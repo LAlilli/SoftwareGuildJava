@@ -26,7 +26,7 @@ public class RockPaperScissors {
         
         System.out.println("Welcome! Let's play Rock Paper Scissors! \n");
         
-        while(playAgain){
+        while(playAgain == true){
             System.out.println("How many rounds would you like to play? ");
             rounds = userInput.nextInt();
         
@@ -83,6 +83,7 @@ public class RockPaperScissors {
                 System.out.println("Guess it's a tie!");
             }
         
+            //ask user to play again
             System.out.println();
             System.out.println("Did you want to play again? (y/n) ");
             answer = answerScan.nextLine();
