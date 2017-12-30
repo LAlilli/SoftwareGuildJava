@@ -21,6 +21,7 @@ public class SummativeSums {
         System.out.println("#3 Array sum: " + sumArray(array3));
     }
     
+    //method for sum of array elements
     public static int sumArray(int[] numbers){
         int sum = 0;
         int i;

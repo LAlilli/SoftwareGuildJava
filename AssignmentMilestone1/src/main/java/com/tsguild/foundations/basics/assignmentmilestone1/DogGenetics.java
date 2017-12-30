@@ -33,6 +33,7 @@ public class DogGenetics {
         
         float sum = breed1 + breed2 + breed3 + breed4 + breed5;
         
+        //logic for percentage of breed
         for(int i = 0; i < 5; i++){
             if(i==0){
                 breed1 = ((breed1 * 100)/sum);

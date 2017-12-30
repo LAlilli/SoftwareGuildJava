@@ -21,6 +21,7 @@ public class HealthyHearts {
         System.out.print("What is your age? ");
         age = inputUser.nextInt();
         
+        //calculations
         maxHeartRate = 220 - age;
         targetHeartRateMin = maxHeartRate * 0.5;
         targetHeartRateMax = maxHeartRate * 0.85;
