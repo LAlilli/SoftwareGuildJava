@@ -34,24 +34,21 @@ public class DogGenetics {
         float sum = breed1 + breed2 + breed3 + breed4 + breed5;
         
         //logic for percentage of breed
-        for(int i = 0; i < 5; i++){
-            if(i==0){
-                breed1 = ((breed1 * 100)/sum);
-                System.out.println((int)breed1 + "% Husky");
-            } else if(i==1){
-                breed2 = ((breed2 * 100)/sum);
-                System.out.println((int)breed2 + "% Terrier");
-            } else if(i==2){
-                breed3 = ((breed3 * 100)/sum);
-                System.out.println((int)breed3 + "% Labrador");
-            } else if(i==3){
-                breed4 = ((breed4 * 100)/sum);
-                System.out.println((int)breed4 + "% Newfoundland");
-            }else if(i==4){
-                breed5 = ((breed5 * 100)/sum);
-                System.out.println((int)breed5 + "% Mastiff");
-            }
-        }
+        breed1 = ((breed1 * 100)/sum);
+        System.out.println((int)breed1 + "% Husky");
+                
+        breed2 = ((breed2 * 100)/sum);
+        System.out.println((int)breed2 + "% Terrier");
+                
+        breed3 = ((breed3 * 100)/sum);
+        System.out.println((int)breed3 + "% Labrador");
+                
+        breed4 = ((breed4 * 100)/sum);
+        System.out.println((int)breed4 + "% Newfoundland");
+                
+        breed5 = ((breed5 * 100)/sum);
+        System.out.println((int)breed5 + "% Mastiff");
+        
         System.out.println();
         System.out.println("What an adorably unique mutt!");
     }

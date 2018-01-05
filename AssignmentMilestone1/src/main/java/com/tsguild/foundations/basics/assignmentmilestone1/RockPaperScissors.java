@@ -16,19 +16,19 @@ public class RockPaperScissors {
     public static void main(String[] args){
         int rock = 1, paper = 2, scissors = 3; //variables for choice
         int tie = 0, userWin = 0, aiWin = 0; //variables for counting wins/ties
-        int rounds, i , userChoice, aiChoice; //variables for rounds, iterator and choice storage
+        int rounds, i , userChoice, aiChoice; //variables for rounds, iterator and choice
         boolean playAgain = true;
-        String answer;
+        String answer; //for user input
         
         Scanner userInput = new Scanner(System.in); //scanner for numeric entries
-        Scanner answerScan = new Scanner(System.in); //scanner for string/charac entry
         Random randChoice = new Random();
         
         System.out.println("Welcome! Let's play Rock Paper Scissors! \n");
         
         while(playAgain == true){
             System.out.println("How many rounds would you like to play? ");
-            rounds = userInput.nextInt();
+            answer = userInput.nextLine();
+            rounds = Integer.parseInt(answer);
         
             if(rounds > 10){
                 System.out.println("Sorry that's WAY too many rounds!");
@@ -39,7 +39,8 @@ public class RockPaperScissors {
             for(i = 1; i <= rounds; i++){
                 System.out.println("\n ROUND " + i);
                 System.out.println("Ready? Choose: 1)Rock 2)Paper 3)Scissors ");
-                userChoice = userInput.nextInt();
+                answer = userInput.nextLine();
+                userChoice = Integer.parseInt(answer);
                 
                 //logic to compare computer choice and user choice
                 aiChoice = randChoice.nextInt(3) + 1;
@@ -86,11 +87,14 @@ public class RockPaperScissors {
             //ask user to play again
             System.out.println();
             System.out.println("Did you want to play again? (y/n) ");
-            answer = answerScan.nextLine();
+            answer = userInput.nextLine();
             System.out.println();
         
             if(answer.equals("y")){
                 playAgain = true;
+                aiWin = 0;
+                userWin = 0;
+                tie = 0;
             } else if(answer.equals("n")){
                 playAgain = false;
                 System.out.println("Thanks for playing!");
