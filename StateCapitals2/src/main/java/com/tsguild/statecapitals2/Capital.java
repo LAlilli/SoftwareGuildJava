@@ -25,9 +25,6 @@ public class Capital {
     public static void main(String[] args){
        Capital capital = new Capital();
        HashMap <String, Capital> stateCapitals = new HashMap<>();
-       Map<String, Capital> map = new TreeMap<>(stateCapitals); //to sort hashmap alphabetically
-       Set keys = map.entrySet(); // iterates over key-value set instead of iterating over key and then grabbbing value
-       Iterator iterator = keys.iterator(); //iterator for treemap
        int populationMin;
        
        //add data to hashmap
@@ -86,6 +83,9 @@ public class Capital {
        System.out.println("====================");
        
        System.out.println();
+       Map<String, Capital> map = new TreeMap<>(stateCapitals); //to sort hashmap alphabetically
+       Set keys = map.entrySet(); // iterates over key-value set instead of iterating over key and then grabbbing value
+       Iterator iterator = keys.iterator(); //iterator for treemap
        while(iterator.hasNext()) {
            //create instance of map.entry class
             Map.Entry stateCapital = (Map.Entry)iterator.next();
