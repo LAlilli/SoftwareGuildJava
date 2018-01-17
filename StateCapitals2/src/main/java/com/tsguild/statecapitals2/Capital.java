@@ -88,9 +88,9 @@ public class Capital {
        Iterator iterator = keys.iterator(); //iterator for treemap
        while(iterator.hasNext()) {
            //create instance of map.entry class
-            Map.Entry stateCapital = (Map.Entry)iterator.next();
-            System.out.print(stateCapital.getKey() + " - ");
-            System.out.println(map.get(stateCapital.getKey()).getName() + " | Pop: " + map.get(stateCapital.getKey()).getPopulation() + " | Area: " + map.get(stateCapital.getKey()).getSquareMileage() + " sq mi");
+            Map.Entry Capital = (Map.Entry)iterator.next();
+            System.out.print(Capital.getKey() + " - ");
+            System.out.println(map.get(Capital.getKey()).getName() + " | Pop: " + map.get(Capital.getKey()).getPopulation() + " | Area: " + map.get(Capital.getKey()).getSquareMileage() + " sq mi");
         }
        
        //get user input
