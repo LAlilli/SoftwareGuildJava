@@ -7,6 +7,7 @@ package com.sg.dvdlibrary.controller;
 
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoException;
+import com.sg.dvdlibrary.dto.DVD;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
 import java.util.List;
 import java.util.Map;
@@ -68,46 +69,86 @@ public class DVDLibraryController {
     private int getMenuSelection() {
         return view.printMenuAndGetSelection();
     }
+    
+    private int getEditMenuSelection(){
+        return view.editMenuSelection();
+    }
 
     private void addDVD() throws DVDLibraryDaoException {
-        /*view.displayCreateAddressBanner();
-        Address newAddress = view.getNewAddressInfo();
-        dao.addAddress(newAddress.getLastName(), newAddress);
-        view.displayCreateSuccessBanner();*/
+        view.displayCreateDVDBanner();
+        DVD newDVD = view.getNewDVDInfo();
+        dao.addDVD(newDVD.getTitle(), newDVD);
+        view.displayCreateSuccessBanner();
     }
 
     private void listAllDVDs() throws DVDLibraryDaoException {
-        /*view.displayDisplayAllBanner();
-        List<Address> addressList = dao.getAllAddresses();
-        view.displayAddressList(addressList);*/
+        view.displayDisplayAllBanner();
+        List<DVD> dvdList = dao.getAllDVDs();
+        view.displayDVDList(dvdList);
     }
 
     private void displayDVDInfo() throws DVDLibraryDaoException {
-        /*view.displayDisplayAddressBanner();
-        String lastName = view.getAddressNameChoice();
-        Address address = dao.getAddress(lastName);
-        view.displayAddress(address);*/
+        view.displayDisplayDVDBanner();
+        String title = view.getDVDTitleChoice();
+        DVD dvd = dao.getDVD(title);
+        view.displayDVD(dvd);
     }
 
     private void removeDVD() throws DVDLibraryDaoException {
-        /*view.displayRemoveAddressBanner();
-        String lastName = view.getAddressNameChoice();
-        dao.removeAddress(lastName);
-        view.displayRemoveSuccessBanner();*/
+        view.displayRemoveDVDBanner();
+        String title = view.getDVDTitleChoice();
+        dao.removeDVD(title);
+        view.displayRemoveSuccessBanner();
     }
     
     private void editDVD() throws DVDLibraryDaoException {
-        /*view.displayNumberOfAddressBanner();
-        Map<String, Address> address = null;
-        int numberOfAddresses = dao.getNumberOfAddresses(address);
-        view.displayNumberSuccessBanner();*/
+        view.displayEditDVDBanner();
+        String title = view.getDVDTitleChoice();
+        DVD dvd = dao.getDVD(title);
+        
+        boolean keepEditing = true;
+        int editMenuSelection = 0;
+        
+        while(keepEditing){
+            editMenuSelection = getEditMenuSelection();
+            
+            switch (editMenuSelection){
+                case 1:
+                    //dvd.getTitle();
+                    title = view.editDVDTitle();
+                    
+                    //dvd.setTitle(title);
+                    break;
+                case 2:
+                    removeDVD();
+                    break;
+                case 3:
+                    editDVD();
+                    break;
+                case 4:
+                    listAllDVDs();
+                    break;
+                case 5:
+                    displayDVDInfo();
+                    break;
+                case 6:
+                    searchDVDByTitle();
+                    break;
+                case 7:
+                    keepEditing = false;
+                    break;
+                default:
+                    unknownCommand();
+            }
+        }
+        view.displayEditSuccessBanner();
     }
     
     private void searchDVDByTitle() throws DVDLibraryDaoException {
-        /*view.displayNumberOfAddressBanner();
-        Map<String, Address> address = null;
-        int numberOfAddresses = dao.getNumberOfAddresses(address);
-        view.displayNumberSuccessBanner();*/
+        view.displayDisplayDVDBanner();
+        String title = view.getDVDTitleChoice();
+        DVD dvd = dao.getDVD(title);
+        view.displayDVD(dvd);
     }
 
     private void unknownCommand() {

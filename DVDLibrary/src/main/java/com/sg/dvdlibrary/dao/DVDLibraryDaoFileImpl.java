@@ -30,30 +30,37 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
     @Override
     public DVD addDVD(String title, DVD dvds) throws DVDLibraryDaoException {
         DVD newDVD = dvd.put(title, dvds);
-        writeRoster();
+        writeDVD();
         return newDVD;
     }
 
     @Override
     public List<DVD> getAllDVDs() throws DVDLibraryDaoException {
-        loadRoster();
+        loadDVD();
 	return new ArrayList<DVD>(dvd.values());
     }
 
     @Override
     public DVD getDVD(String title) throws DVDLibraryDaoException {
-        loadRoster();
+        loadDVD();
 	return dvd.get(title);
     }
 
     @Override
     public DVD removeDVD(String title) throws DVDLibraryDaoException {
         DVD removeDVD = dvd.remove(title);
-        writeRoster();
+        writeDVD();
         return removeDVD;
     }
     
-    private void loadRoster() throws DVDLibraryDaoException {
+    @Override
+    public DVD editDVD() throws DVDLibraryDaoException {
+        /*DVD editDVD = dvd.get(title);
+        writeDVD();
+        return editDVD;*/
+    }
+    
+    private void loadDVD() throws DVDLibraryDaoException {
         Scanner scanner;
 
         try {
@@ -76,13 +83,12 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
             currentTokens = currentLine.split(DELIMITER);
 
             DVD currentDVD = new DVD(currentTokens[0]);
-            // Set the remaining vlaues on currentAddress manually
-            currentDVD.setTitle(currentTokens[1]);
-            currentDVD.setReleaseDate(currentTokens[2]);
-            currentDVD.setMPAARating(currentTokens[3]);
-            currentDVD.setDirectorName(currentTokens[4]);
-            currentDVD.setStudioName(currentTokens[5]);
-            currentDVD.setUserNote(currentTokens[6]);
+            // Set the remaining vlaues on currentDVD manually
+            currentDVD.setReleaseDate(currentTokens[1]);
+            currentDVD.setMPAARating(currentTokens[2]);
+            currentDVD.setDirectorName(currentTokens[3]);
+            currentDVD.setStudioName(currentTokens[4]);
+            currentDVD.setUserNote(currentTokens[5]);
 
             // Put currentAddress into the map using studentID as the key
             dvd.put(currentDVD.getTitle(), currentDVD);
@@ -91,7 +97,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
         scanner.close();
     }
 
-    private void writeRoster() throws DVDLibraryDaoException {
+    private void writeDVD() throws DVDLibraryDaoException {
 
         PrintWriter out;
 

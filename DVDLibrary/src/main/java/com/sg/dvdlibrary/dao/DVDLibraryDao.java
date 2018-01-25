@@ -7,18 +7,19 @@ package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.DVD;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author LA-San
  */
 public interface DVDLibraryDao {
-   DVD addDVD(String lastName, DVD dvds) throws DVDLibraryDaoException;
+   DVD addDVD(String title, DVD dvds) throws DVDLibraryDaoException;
 
    List<DVD> getAllDVDs() throws DVDLibraryDaoException;
 
    DVD getDVD(String title) throws DVDLibraryDaoException;
 
    DVD removeDVD(String title) throws DVDLibraryDaoException;
+   
+   DVD editDVD() throws DVDLibraryDaoException;
 }
