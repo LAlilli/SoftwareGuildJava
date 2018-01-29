@@ -21,6 +21,7 @@ public class DVD {
         this.title = title;
     }
 
+    // getter and setter for title
     public String getTitle() {
         return title;
     }
@@ -29,6 +30,7 @@ public class DVD {
         this.title = title;
     }
 
+    //getter and setter for release date
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -37,6 +39,7 @@ public class DVD {
         this.releaseDate = releaseDate;
     }
     
+    //getter and setter for MPAA rating
     public String getMPAARating() {
         return mpaaRating;
     }
@@ -45,6 +48,7 @@ public class DVD {
         this.mpaaRating = mpaaRating;
     }
     
+    //getter and setter for director name
     public String getDirectorName() {
         return directorName;
     }
@@ -53,6 +57,7 @@ public class DVD {
         this.directorName = directorName;
     } 
     
+    //getter and setter for studio name
     public String getStudioName(){
         return studioName;
     }
@@ -61,6 +66,7 @@ public class DVD {
         this.studioName = studioName;
     }
     
+    //getter and setter for user note
     public String getUserNote(){
         return userNote;
     }

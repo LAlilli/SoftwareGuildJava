@@ -19,28 +19,31 @@ public class DVDLibraryView {
         this.io = io;
     }
 
+    //main menu
     public int printMenuAndGetSelection() {
         io.print("Main Menu");
         io.print("1. Add a DVD");
         io.print("2. Remove a DVD");
         io.print("3. Edit DVD Information");
         io.print("4. List All DVDs");
-        io.print("5. Display Info for DVD");
+        io.print("5. Display Information for DVD");
         io.print("6. Search for DVD by Title");
         io.print("7. Exit");
 
         return io.readInt("Please select from the above choices.", 1, 7);
     }
     
-    // methods for adding new dvds
+    //adding new dvds
     public DVD getNewDVDInfo() {
+        //get user input for each object property
         String title = io.readString("Please enter Title");
         String releaseDate = io.readString("Please enter Release Date");
         String mpaaRating = io.readString("Please enter MPAA Rating");
         String directorName = io.readString("Please enter Director's Name");
-        String studioName = io.readString("Please enter Studio Name");
+        String studioName = io.readString("Please enter Studio");
         String userNote = io.readString("Please enter a note or rating of your own");
         
+        //store user entries into new DVD object
         DVD currentDVD = new DVD(title);
         currentDVD.setTitle(title);
         currentDVD.setReleaseDate(releaseDate);
@@ -48,6 +51,7 @@ public class DVDLibraryView {
         currentDVD.setDirectorName(directorName);
         currentDVD.setStudioName(studioName);
         currentDVD.setUserNote(userNote);
+        
         return currentDVD;
     }
 
@@ -58,16 +62,15 @@ public class DVDLibraryView {
     public void displayCreateSuccessBanner() {
         io.readString("DVD successfully added.  Please hit enter to continue");
     }
-    
-    
-    //display DVDs
+     
+    //display all DVDs
     public void displayDVDList(List<DVD> dvdList) {
         for (DVD currentDVD : dvdList) {
             io.print(currentDVD.getTitle() + ", "
-                    + currentDVD.getReleaseDate() + " "
-                    + currentDVD.getMPAARating() + " "
-                    + currentDVD.getDirectorName() + " "
-                    + currentDVD.getStudioName() + " "
+                    + currentDVD.getReleaseDate() + ", "
+                    + currentDVD.getMPAARating() + ", "
+                    + currentDVD.getDirectorName() + ", "
+                    + currentDVD.getStudioName() + ", "
                     + currentDVD.getUserNote());
         }
         io.readString("Please hit enter to continue.");
@@ -79,11 +82,11 @@ public class DVDLibraryView {
     
     //get DVD by title
     public void displayDisplayDVDBanner () {
-        io.print("=== Display DVD ===");
+        io.print("=== Retrieve DVD ===");
     }
 
     public String getDVDTitleChoice() {
-        return io.readString("Please enter the Title.");
+        return io.readString("Please enter the Title of the DVD you're looking for.");
     }
 
     public void displayDVD(DVD dvd) {
@@ -110,6 +113,22 @@ public class DVDLibraryView {
         io.readString("DVD successfully removed. Please hit enter to continue.");
     }
     
+    //exit message
+    public void displayExitBanner() {
+        io.print("Good Bye!!!");
+    }
+
+    //unknown command message
+    public void displayUnknownCommandBanner() {
+        io.print("Unknown Command!!!");
+    }
+    
+    //error message
+    public void displayErrorMessage(String errorMsg) {
+        io.print("=== ERROR ===");
+        io.print(errorMsg);
+    }
+    
     //editing DVD
     public void displayEditDVDBanner () {
         io.print("=== Editing DVD ===");
@@ -120,7 +139,7 @@ public class DVDLibraryView {
     }
     
     public int editMenuSelection(){
-        io.print("What info would you like to edit?");
+        io.print("What information would you like to edit for that DVD?");
         io.print("1. Title");
         io.print("2. Release Date");
         io.print("3. MPAA Rating");
@@ -134,21 +153,31 @@ public class DVDLibraryView {
     
     public String editDVDTitle(){
         String title = io.readString("Please enter updated Title");
-        
         return title;
     }
     
-    //unknown commands
-    public void displayExitBanner() {
-        io.print("Good Bye!!!");
-    }
-
-    public void displayUnknownCommandBanner() {
-        io.print("Unknown Command!!!");
+    public String editDVDReleaseDate(){
+        String releaseDate = io.readString("Please enter updated Release Date");
+        return releaseDate;
     }
     
-    public void displayErrorMessage(String errorMsg) {
-        io.print("=== ERROR ===");
-        io.print(errorMsg);
+    public String editDVDMPAARating(){
+        String mpaaRating = io.readString("Please enter updated MPAA Rating");
+        return mpaaRating;
+    }
+    
+    public String editDVDDirectorName(){
+        String directorName = io.readString("Please enter updated Director's Name");
+        return directorName;
+    }
+    
+    public String editDVDStudioName(){
+        String studioName = io.readString("Please enter updated Studio");
+        return studioName;
+    }
+    
+    public String editDVDUserNote(){
+        String userNote = io.readString("Please enter updated User Rating/Note");
+        return userNote;
     }
 }

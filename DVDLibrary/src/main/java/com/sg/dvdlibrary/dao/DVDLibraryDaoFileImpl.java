@@ -54,12 +54,13 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
     }
     
     @Override
-    public DVD editDVD() throws DVDLibraryDaoException {
-        /*DVD editDVD = dvd.get(title);
+    public DVD editDVD(String title, DVD dvds) throws DVDLibraryDaoException {
+        DVD editDVD = dvd.replace(title, dvds);
         writeDVD();
-        return editDVD;*/
+        return editDVD;
     }
     
+    //method for loading DVD info from text file
     private void loadDVD() throws DVDLibraryDaoException {
         Scanner scanner;
 
@@ -90,23 +91,26 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
             currentDVD.setStudioName(currentTokens[4]);
             currentDVD.setUserNote(currentTokens[5]);
 
-            // Put currentAddress into the map using studentID as the key
+            // Put current dvd into the map using title as the key
             dvd.put(currentDVD.getTitle(), currentDVD);
         }
         // close scanner
         scanner.close();
     }
 
+    //method for writing dvd info to text file
     private void writeDVD() throws DVDLibraryDaoException {
 
         PrintWriter out;
 
+        //try catch block in case not able to save info to file
         try {
             out = new PrintWriter(new FileWriter(DVD_FILE));
         } catch (IOException e) {
             throw new DVDLibraryDaoException("Could not save dvd data.", e);
         }
 
+        //create DVD list to save DVDs with delimiter
         List<DVD> dvdList = this.getAllDVDs();
         for (DVD currentDVD : dvdList) {
             // write the dvd object to the file

@@ -10,7 +10,6 @@ import com.sg.dvdlibrary.dao.DVDLibraryDaoException;
 import com.sg.dvdlibrary.dto.DVD;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -28,6 +27,8 @@ public class DVDLibraryController {
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
+        
+        //try catch block for DAO exception
         try {
             while (keepGoing) {
 
@@ -66,6 +67,7 @@ public class DVDLibraryController {
     } 
 }
 
+    //menu methods
     private int getMenuSelection() {
         return view.printMenuAndGetSelection();
     }
@@ -74,6 +76,7 @@ public class DVDLibraryController {
         return view.editMenuSelection();
     }
 
+    //add a new DVD
     private void addDVD() throws DVDLibraryDaoException {
         view.displayCreateDVDBanner();
         DVD newDVD = view.getNewDVDInfo();
@@ -81,12 +84,14 @@ public class DVDLibraryController {
         view.displayCreateSuccessBanner();
     }
 
+    //list all DVDs and their associated properties
     private void listAllDVDs() throws DVDLibraryDaoException {
         view.displayDisplayAllBanner();
         List<DVD> dvdList = dao.getAllDVDs();
         view.displayDVDList(dvdList);
     }
 
+    //display DVD information based on title choice
     private void displayDVDInfo() throws DVDLibraryDaoException {
         view.displayDisplayDVDBanner();
         String title = view.getDVDTitleChoice();
@@ -94,6 +99,7 @@ public class DVDLibraryController {
         view.displayDVD(dvd);
     }
 
+    //remove DVD
     private void removeDVD() throws DVDLibraryDaoException {
         view.displayRemoveDVDBanner();
         String title = view.getDVDTitleChoice();
@@ -101,7 +107,28 @@ public class DVDLibraryController {
         view.displayRemoveSuccessBanner();
     }
     
+    //search for DVD by title
+    private void searchDVDByTitle() throws DVDLibraryDaoException {
+        view.displayDisplayDVDBanner();
+        String title = view.getDVDTitleChoice();
+        DVD dvd = dao.getDVD(title);
+        view.displayDVD(dvd);
+    }
+    
+    //unknown command message
+    private void unknownCommand() {
+        view.displayUnknownCommandBanner();
+    }
+
+    //exit message
+    private void exitMessage() {
+        view.displayExitBanner();
+    }
+    
+    //editing DVD information based on user selection
     private void editDVD() throws DVDLibraryDaoException {
+        
+        //retrieve DVD that user would like to edit
         view.displayEditDVDBanner();
         String title = view.getDVDTitleChoice();
         DVD dvd = dao.getDVD(title);
@@ -109,30 +136,40 @@ public class DVDLibraryController {
         boolean keepEditing = true;
         int editMenuSelection = 0;
         
+        //allow user to edit different properties for DVD
         while(keepEditing){
             editMenuSelection = getEditMenuSelection();
             
             switch (editMenuSelection){
                 case 1:
-                    //dvd.getTitle();
                     title = view.editDVDTitle();
-                    
-                    //dvd.setTitle(title);
+                    dvd.setTitle(title);
+                    dao.editDVD(title, dvd);
                     break;
                 case 2:
-                    removeDVD();
+                    String releaseDate = view.editDVDReleaseDate();
+                    dvd.setReleaseDate(releaseDate);
+                    dao.editDVD(title, dvd);
                     break;
                 case 3:
-                    editDVD();
+                    String mpaaRating = view.editDVDMPAARating();
+                    dvd.setMPAARating(mpaaRating);
+                    dao.editDVD(title, dvd);
                     break;
                 case 4:
-                    listAllDVDs();
+                    String directorName = view.editDVDDirectorName();
+                    dvd.setDirectorName(directorName);
+                    dao.editDVD(title, dvd);
                     break;
                 case 5:
-                    displayDVDInfo();
+                    String studioName = view.editDVDStudioName();
+                    dvd.setStudioName(studioName);
+                    dao.editDVD(title, dvd);
                     break;
                 case 6:
-                    searchDVDByTitle();
+                    String userNote = view.editDVDUserNote();
+                    dvd.setUserNote(userNote);
+                    dao.editDVD(title, dvd);
                     break;
                 case 7:
                     keepEditing = false;
@@ -142,20 +179,5 @@ public class DVDLibraryController {
             }
         }
         view.displayEditSuccessBanner();
-    }
-    
-    private void searchDVDByTitle() throws DVDLibraryDaoException {
-        view.displayDisplayDVDBanner();
-        String title = view.getDVDTitleChoice();
-        DVD dvd = dao.getDVD(title);
-        view.displayDVD(dvd);
-    }
-
-    private void unknownCommand() {
-        view.displayUnknownCommandBanner();
-    }
-
-    private void exitMessage() {
-        view.displayExitBanner();
     }
 }
