@@ -142,9 +142,12 @@ public class DVDLibraryController {
             
             switch (editMenuSelection){
                 case 1:
-                    title = view.editDVDTitle();
-                    dvd.setTitle(title);
-                    dao.editDVD(title, dvd);
+                    //remove old title/key from hashmap
+                    dao.removeDVD(title); 
+                    //add new title
+                    String updatedTitle = view.editDVDTitle();
+                    dvd.setTitle(updatedTitle);
+                    dao.editDVD(updatedTitle, dvd);
                     break;
                 case 2:
                     String releaseDate = view.editDVDReleaseDate();
