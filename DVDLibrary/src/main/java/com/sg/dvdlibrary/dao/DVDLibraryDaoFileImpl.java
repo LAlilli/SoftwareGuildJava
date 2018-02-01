@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -76,23 +77,27 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
         // currentLine holds the most recent line read from the file
         String currentLine;
         String[] currentTokens;
-
+        
         while (scanner.hasNextLine()) {
-            // get the next line in the file
-            currentLine = scanner.nextLine();
-            // break up the line into tokens
-            currentTokens = currentLine.split(DELIMITER);
+            try {
+                // get the next line in the file
+                currentLine = scanner.nextLine();
+                // break up the line into tokens
+                currentTokens = currentLine.split(DELIMITER);
 
-            DVD currentDVD = new DVD(currentTokens[0]);
-            // Set the remaining vlaues on currentDVD manually
-            currentDVD.setReleaseDate(currentTokens[1]);
-            currentDVD.setMPAARating(currentTokens[2]);
-            currentDVD.setDirectorName(currentTokens[3]);
-            currentDVD.setStudioName(currentTokens[4]);
-            currentDVD.setUserNote(currentTokens[5]);
+                DVD currentDVD = new DVD(currentTokens[0]);
+                // Set the remaining vlaues on currentDVD manually
+                currentDVD.setReleaseDate(currentTokens[1]);
+                currentDVD.setMPAARating(currentTokens[2]);
+                currentDVD.setDirectorName(currentTokens[3]);
+                currentDVD.setStudioName(currentTokens[4]);
+                currentDVD.setUserNote(currentTokens[5]);
 
-            // Put current dvd into the map using title as the key
-            dvd.put(currentDVD.getTitle(), currentDVD);
+                // Put current dvd into the map using title as the key
+                dvd.put(currentDVD.getTitle(), currentDVD);   
+            } catch (InputMismatchException e){
+                System.out.println("-_- Data mismatch - unable to scan.");
+            }
         }
         // close scanner
         scanner.close();
