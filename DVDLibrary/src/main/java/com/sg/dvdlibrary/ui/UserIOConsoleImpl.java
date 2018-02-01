@@ -31,17 +31,33 @@ public class UserIOConsoleImpl implements UserIO {
 
     @Override
     public double readDouble(String prompt, double min, double max){
-        System.out.println(prompt);
-        String input = userInput.nextLine();
+        boolean incorrectRange = true;
+        double userNum = 0;
         
-        double numInputMin = Double.parseDouble(input);
+        while(incorrectRange){
+            System.out.println(prompt);
+            String input = userInput.nextLine();
         
-        System.out.println(prompt);
-        input = userInput.nextLine();
+            userNum = Double.parseDouble(input);
         
-        double numInputMax = Double.parseDouble(input);
+            if(userNum < min){
+                System.out.println(prompt);
+                input = userInput.nextLine();
         
-        return numInputMax; 
+                userNum = Double.parseDouble(input);
+                incorrectRange = true;
+            } else if(userNum > max){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Double.parseDouble(input);
+                incorrectRange = true;
+            } else {
+                incorrectRange = false;
+                break;
+            }
+        }
+        return userNum; 
     }
     
     @Override
@@ -56,12 +72,34 @@ public class UserIOConsoleImpl implements UserIO {
 
     @Override
     public int readInt(String prompt, int min, int max){
-        System.out.println(prompt);
-        String input = userInput.nextLine();
+        boolean incorrectRange = true;
+        int userNum = 0;
         
-        int numInput = Integer.parseInt(input);
+        while(incorrectRange){
+            System.out.println(prompt);
+            String input = userInput.nextLine();
         
-        return numInput;
+            userNum = Integer.parseInt(input);
+        
+            if(userNum < min){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Integer.parseInt(input);
+                incorrectRange = true;
+            } else if(userNum > max){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Integer.parseInt(input);
+                incorrectRange = true;
+            } else {
+                incorrectRange = false;
+                break;
+            }
+        }
+        
+        return userNum;
     }
     
     @Override
@@ -84,12 +122,34 @@ public class UserIOConsoleImpl implements UserIO {
 
     @Override
     public long readLong(String prompt, long min, long max){
-        System.out.println(prompt);
-        String input = userInput.nextLine();
+        boolean incorrectRange = true;
+        long userNum = 0;
         
-        long numInput = Long.parseLong(input);
+        while(incorrectRange){
+            System.out.println(prompt);
+            String input = userInput.nextLine();
         
-        return numInput;
+            userNum = Long.parseLong(input);
+        
+            if(userNum < min){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Long.parseLong(input);
+                incorrectRange = true;
+            } else if(userNum > max){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Long.parseLong(input);
+                incorrectRange = true;
+            } else {
+                incorrectRange = false;
+                break;
+            }
+        }
+        
+        return userNum;
     }
     
     @Override
@@ -104,11 +164,33 @@ public class UserIOConsoleImpl implements UserIO {
 
     @Override
     public float readFloat(String prompt, float min, float max){
-        System.out.println(prompt);
-        String input = userInput.nextLine();
+        boolean incorrectRange = true;
+        float userNum = 0;
         
-        float numInput = Float.parseFloat(input);
+        while(incorrectRange){
+            System.out.println(prompt);
+            String input = userInput.nextLine();
         
-        return numInput;
+            userNum = Float.parseFloat(input);
+        
+            if(userNum < min){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Float.parseFloat(input);
+                incorrectRange = true;
+            } else if(userNum > max){
+                System.out.println(prompt);
+                input = userInput.nextLine();
+        
+                userNum = Float.parseFloat(input);
+                incorrectRange = true;
+            } else {
+                incorrectRange = false;
+                break;
+            }
+        }
+        
+        return userNum;
     }
 }
