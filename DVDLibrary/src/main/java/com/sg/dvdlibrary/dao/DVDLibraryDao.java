@@ -13,13 +13,13 @@ import java.util.List;
  * @author LA-San
  */
 public interface DVDLibraryDao {
-   DVD addDVD(String title, DVD dvds) throws DVDLibraryDaoException;
+   DVD addDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
 
-   List<DVD> getAllDVDs() throws DVDLibraryDaoException;
+   List<DVD> getAllDVDs() throws DVDLibraryPersistenceException;
 
-   DVD getDVD(String title) throws DVDLibraryDaoException;
+   DVD getDVD(String title) throws DVDLibraryPersistenceException;
 
-   DVD removeDVD(String title) throws DVDLibraryDaoException;
+   DVD removeDVD(String title) throws DVDLibraryPersistenceException;
    
-   DVD editDVD(String title, DVD dvds) throws DVDLibraryDaoException;
+   DVD editDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
 }

@@ -29,40 +29,40 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
     public static final String DELIMITER = "::";
     
     @Override
-    public DVD addDVD(String title, DVD dvds) throws DVDLibraryDaoException {
+    public DVD addDVD(String title, DVD dvds) throws DVDLibraryPersistenceException {
         DVD newDVD = dvd.put(title, dvds);
         writeDVD();
         return newDVD;
     }
 
     @Override
-    public List<DVD> getAllDVDs() throws DVDLibraryDaoException {
+    public List<DVD> getAllDVDs() throws DVDLibraryPersistenceException {
         loadDVD();
 	return new ArrayList<DVD>(dvd.values());
     }
 
     @Override
-    public DVD getDVD(String title) throws DVDLibraryDaoException {
+    public DVD getDVD(String title) throws DVDLibraryPersistenceException {
         loadDVD();
 	return dvd.get(title);
     }
 
     @Override
-    public DVD removeDVD(String title) throws DVDLibraryDaoException {
+    public DVD removeDVD(String title) throws DVDLibraryPersistenceException {
         DVD removeDVD = dvd.remove(title);
         writeDVD();
         return removeDVD;
     }
     
     @Override
-    public DVD editDVD(String title, DVD dvds) throws DVDLibraryDaoException {
+    public DVD editDVD(String title, DVD dvds) throws DVDLibraryPersistenceException {
         DVD editDVD = dvd.put(title, dvds);
         writeDVD();
         return editDVD;
     }
     
     //method for loading DVD info from text file
-    private void loadDVD() throws DVDLibraryDaoException {
+    private void loadDVD() throws DVDLibraryPersistenceException {
         Scanner scanner;
 
         try {
@@ -71,7 +71,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
                 new BufferedReader(
                     new FileReader(DVD_FILE)));
         } catch (FileNotFoundException e) {
-            throw new DVDLibraryDaoException(
+            throw new DVDLibraryPersistenceException(
                 "-_- Could not load roster data into memory.", e);
         }
         // currentLine holds the most recent line read from the file
@@ -104,7 +104,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
     }
 
     //method for writing dvd info to text file
-    private void writeDVD() throws DVDLibraryDaoException {
+    private void writeDVD() throws DVDLibraryPersistenceException {
 
         PrintWriter out;
 
@@ -112,7 +112,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
         try {
             out = new PrintWriter(new FileWriter(DVD_FILE));
         } catch (IOException e) {
-            throw new DVDLibraryDaoException("Could not save dvd data.", e);
+            throw new DVDLibraryPersistenceException("Could not save dvd data.", e);
         }
 
         //create DVD list to save DVDs with delimiter
