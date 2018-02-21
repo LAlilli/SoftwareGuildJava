@@ -22,7 +22,13 @@ public class FrontTimes {
         StringBuilder times = new StringBuilder();
         
         for(int i = 0; i < n; i++){
-           times.append(str.substring(0, 3));
+           if (str.length() < 2){
+             times.append(str.substring(0, 1));  
+           } else if (str.length() < 3){
+             times.append(str.substring(0, 2));
+           } else {
+             times.append(str.substring(0, 3));
+           }
         }
         
         return times.toString();
