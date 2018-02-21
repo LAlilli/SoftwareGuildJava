@@ -45,18 +45,18 @@ public class CanHazTableTest {
     @Test
     public void testYes() {
         int expectedResult = 2;
-        assertEquals(expectedResult, 2);
+        assertEquals(expectedResult, table.canHazTable(5, 10));
     }
     
     @Test
     public void testNo() {
         int expectedResult = 0;
-        assertEquals(expectedResult, 0);
+        assertEquals(expectedResult, table.canHazTable(5, 2));
     }
     
     @Test
     public void testMaybe() {
         int expectedResult = 1;
-        assertEquals(expectedResult, 1);
+        assertEquals(expectedResult, table.canHazTable(5, 5));
     }
 }
