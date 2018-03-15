@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.dvdlibrary.ui;
+package com.sg.vendingmachine.ui;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
@@ -15,14 +14,9 @@ import java.util.Scanner;
 public class UserIOConsoleImpl implements UserIO {
     private Scanner userInput = new Scanner(System.in);
     
-     @Override
+    @Override
     public void print(String message){
         System.out.println(message);
-    }
-    
-    @Override
-    public void printDate(LocalDate date){
-        System.out.println(date);
     }
 
     @Override

@@ -6,6 +6,8 @@
 package com.sg.dvdlibrary.ui;
 
 import com.sg.dvdlibrary.dto.DVD;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -37,7 +39,7 @@ public class DVDLibraryView {
     public DVD getNewDVDInfo() {
         //get user input for each object property
         String title = io.readString("Please enter Title");
-        String releaseDate = io.readString("Please enter Release Date");
+        LocalDate releaseDate = dateInput(io.readString("Please enter Release Date"));
         String mpaaRating = io.readString("Please enter MPAA Rating");
         String directorName = io.readString("Please enter Director's Name");
         String studioName = io.readString("Please enter Studio");
@@ -53,6 +55,13 @@ public class DVDLibraryView {
         currentDVD.setUserNote(userNote);
         
         return currentDVD;
+    }
+    
+    public LocalDate dateInput(String releaseDate){
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        LocalDate date = LocalDate.parse(releaseDate, dateFormat);
+        
+        return date;
     }
 
     public void displayCreateDVDBanner() {
@@ -92,7 +101,7 @@ public class DVDLibraryView {
     public void displayDVD(DVD dvd) {
         if (dvd != null) {
             io.print(dvd.getTitle());
-            io.print(dvd.getReleaseDate());
+            io.printDate(dvd.getReleaseDate());
             io.print(dvd.getMPAARating());
             io.print(dvd.getDirectorName());
             io.print(dvd.getStudioName());

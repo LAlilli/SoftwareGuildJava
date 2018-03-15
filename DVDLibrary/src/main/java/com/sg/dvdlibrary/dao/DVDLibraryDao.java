@@ -22,4 +22,18 @@ public interface DVDLibraryDao {
    DVD removeDVD(String title) throws DVDLibraryPersistenceException;
    
    DVD editDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   
+   double getAverageDVDAge(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   
+   DVD getNewestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   
+   DVD getOldestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   
+   /*
+    Find all movies released in the last N years
+    Find all the movies with a given MPAA rating
+    Find all the movies by a given director
+    Find the average number of notes associated with movies in your collection
+    When searching by director, the movies should be sorted into separate data structures by MPAA rating.
+   */
 }

@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -61,6 +62,26 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
         return editDVD;
     }
     
+    @Override
+    public double getAverageDVDAge(String title, DVD dvds) throws DVDLibraryPersistenceException {
+        loadDVD();
+        return dvd.values()
+                .stream()
+                .mapToLong(s -> s.getReleaseDate())
+                .average()
+                .getAsDouble() 
+    }
+   
+    @Override
+    public DVD getNewestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException {
+        
+    }
+   
+    @Override
+    public DVD getOldestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException {
+        
+    }
+    
     //method for loading DVD info from text file
     private void loadDVD() throws DVDLibraryPersistenceException {
         Scanner scanner;
@@ -87,7 +108,7 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
 
                 DVD currentDVD = new DVD(currentTokens[0]);
                 // Set the remaining vlaues on currentDVD manually
-                currentDVD.setReleaseDate(currentTokens[1]);
+                currentDVD.setReleaseDate(LocalDate.parse(currentTokens[1]));
                 currentDVD.setMPAARating(currentTokens[2]);
                 currentDVD.setDirectorName(currentTokens[3]);
                 currentDVD.setStudioName(currentTokens[4]);

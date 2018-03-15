@@ -13,6 +13,7 @@ import com.sg.dvdlibrary.service.DVDLibraryDataValidationException;
 import com.sg.dvdlibrary.service.DVDLibraryDuplicateException;
 import com.sg.dvdlibrary.service.DVDLibraryServiceLayer;
 import com.sg.dvdlibrary.ui.DVDLibraryView;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -163,7 +164,7 @@ public class DVDLibraryController {
                     break;
                 case 2:
                     String releaseDate = view.editDVDReleaseDate();
-                    dvd.setReleaseDate(releaseDate);
+                    dvd.setReleaseDate(LocalDate.parse(releaseDate));
                     service.editDVD(title, dvd);
                     break;
                 case 3:

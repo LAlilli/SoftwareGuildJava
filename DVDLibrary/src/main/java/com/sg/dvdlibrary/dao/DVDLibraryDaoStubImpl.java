@@ -6,6 +6,8 @@
 package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.DVD;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class DVDLibraryDaoStubImpl implements DVDLibraryDao {
     
     public DVDLibraryDaoStubImpl(){
         onlyDVD = new DVD("Alien Covenant");
-        onlyDVD.setReleaseDate("2/2/2012");
+        onlyDVD.setReleaseDate(LocalDate.parse("2/2/2012"));
         onlyDVD.setMPAARating("R");
         onlyDVD.setDirectorName("Smithers");
         onlyDVD.setStudioName("Warner");

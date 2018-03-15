@@ -11,6 +11,7 @@ import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoStubImpl;
 import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.DVD;
+import java.time.LocalDate;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -53,7 +54,7 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testCreateDVDDuplicate() throws Exception{
         DVD dvd = new DVD("Alien Covenant");
-        dvd.setReleaseDate("2/2/2015");
+        dvd.setReleaseDate(LocalDate.parse("2/2/2015"));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Swarez");
         dvd.setStudioName("Warner");
@@ -70,7 +71,7 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testCreateDVDInvalidData() throws Exception{
         DVD dvd = new DVD("Alien Covenant");
-        dvd.setReleaseDate("2/2/2015");
+        dvd.setReleaseDate(LocalDate.parse("2/2/2015"));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Swarez");
         dvd.setStudioName("Warner");
@@ -90,7 +91,7 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testAddDVD() throws Exception {
         DVD dvd = new DVD("Prometheus");
-        dvd.setReleaseDate("10/31/2012");
+        dvd.setReleaseDate(LocalDate.parse("10/31/2012"));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Smith");
         dvd.setStudioName("Warner");
@@ -135,7 +136,7 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testEditDVD() throws Exception {
         DVD dvd = new DVD("Prometheus");
-        dvd.setReleaseDate("10/31/2012");
+        dvd.setReleaseDate(LocalDate.parse("10/31/2012"));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Smith");
         dvd.setStudioName("Warner");

@@ -5,6 +5,11 @@
  */
 package com.sg.dvdlibrary.dto;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -13,7 +18,7 @@ import java.util.Objects;
  */
 public class DVD {
     private String title;
-    private String releaseDate;
+    private LocalDate releaseDate;
     private String mpaaRating;
     private String directorName;
     private String studioName;
@@ -33,11 +38,11 @@ public class DVD {
     }
 
     //getter and setter for release date
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
     
@@ -75,6 +80,12 @@ public class DVD {
     
     public void setUserNote(String userNote){
         this.userNote = userNote;
+    }
+    
+    public long getMovieAge(){
+        Period p = releaseDate.until(LocalDate.now());
+        
+        return p.getYears();
     }
 
     @Override

@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.dvdlibrary.ui;
-
-import java.time.LocalDate;
+package com.sg.vendingmachine.ui;
 
 /**
  *
@@ -31,6 +29,4 @@ public interface UserIO {
     long readLong(String prompt, long min, long max);
 
     String readString(String prompt);
-
-    void printDate(LocalDate releaseDate);
 }
