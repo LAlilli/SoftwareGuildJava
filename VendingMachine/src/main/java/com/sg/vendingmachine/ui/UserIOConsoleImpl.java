@@ -40,13 +40,7 @@ public class UserIOConsoleImpl implements UserIO {
         
             userNum = Double.parseDouble(input);
         
-            if(userNum < min){
-                System.out.println(prompt);
-                input = userInput.nextLine();
-        
-                userNum = Double.parseDouble(input);
-                incorrectRange = true;
-            } else if(userNum > max){
+            if(userNum < min || userNum > max){
                 System.out.println(prompt);
                 input = userInput.nextLine();
         
@@ -81,13 +75,7 @@ public class UserIOConsoleImpl implements UserIO {
         
             userNum = Integer.parseInt(input);
         
-            if(userNum < min){
-                System.out.println(prompt);
-                input = userInput.nextLine();
-        
-                userNum = Integer.parseInt(input);
-                incorrectRange = true;
-            } else if(userNum > max){
+            if(userNum < min || userNum > max){
                 System.out.println(prompt);
                 input = userInput.nextLine();
         
@@ -131,13 +119,7 @@ public class UserIOConsoleImpl implements UserIO {
         
             userNum = Long.parseLong(input);
         
-            if(userNum < min){
-                System.out.println(prompt);
-                input = userInput.nextLine();
-        
-                userNum = Long.parseLong(input);
-                incorrectRange = true;
-            } else if(userNum > max){
+            if(userNum < min || userNum > max){
                 System.out.println(prompt);
                 input = userInput.nextLine();
         
@@ -173,13 +155,7 @@ public class UserIOConsoleImpl implements UserIO {
         
             userNum = Float.parseFloat(input);
         
-            if(userNum < min){
-                System.out.println(prompt);
-                input = userInput.nextLine();
-        
-                userNum = Float.parseFloat(input);
-                incorrectRange = true;
-            } else if(userNum > max){
+            if(userNum < min || userNum > max){
                 System.out.println(prompt);
                 input = userInput.nextLine();
         
