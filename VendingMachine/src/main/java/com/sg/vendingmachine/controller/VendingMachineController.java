@@ -30,7 +30,6 @@ public class VendingMachineController {
     public void run () {
         boolean keepGoing = true;
         int menuSelection = 0;
-        double userChange = 0.0;
         String userSelection = null;
         
         //try catch block for persistence exception
@@ -45,13 +44,13 @@ public class VendingMachineController {
                     case 1:
                         listAllItems();
                         break;
-                    case 2:
-                        userChange = insertCoin();
+                    case 2: 
+                        insertCoin();
                         break;
                     case 3:
                         //try catch block for selecting item
                         try {
-                            userSelection = selectItem(userChange);
+                            userSelection = selectItem();
                         } catch (InsufficientFundsException e){
                             view.displayErrorMessage(e.getMessage());
                         } catch (NoItemInventoryException e){
@@ -61,7 +60,7 @@ public class VendingMachineController {
                         }
                         break;
                     case 4:
-                        returnChange(userChange, userSelection);
+                        returnChange(userSelection);
                         break;
                     case 5:
                         keepGoing = false;
@@ -86,19 +85,18 @@ public class VendingMachineController {
         view.displayVendingMachineList(vendingMachineList);
     }
     
-    private double insertCoin() throws VendingMachinePersistenceException{
+    private void insertCoin() throws VendingMachinePersistenceException{
         //prompt user to enter coins
         double userChange = view.displayInsertCoinPrompt();
         service.insertCoin(userChange);
         
         //show user what was entered to confirm
         view.displayInsertCoinBanner(userChange);
-        return userChange;
     }
     
-    private String selectItem(double userChange) throws VendingMachinePersistenceException, InsufficientFundsException, NoItemInventoryException, NullPointerException {
+    private String selectItem() throws VendingMachinePersistenceException, InsufficientFundsException, NoItemInventoryException, NullPointerException {
         VendingMachine selectedItem;
-        userChange = service.getMachineBalance();
+        double userChange = service.getMachineBalance();
         
         if(userChange > 0.0){
             //show user the coins they put in
@@ -138,10 +136,10 @@ public class VendingMachineController {
         return null;
     }
     
-    private void returnChange(double userChange, String userSelection) throws VendingMachinePersistenceException{
+    private void returnChange(String userSelection) throws VendingMachinePersistenceException{
         Change bgChange = new Change();
         VendingMachine selectedItem = service.getItem(userSelection);
-        userChange = service.getMachineBalance();
+        double userChange = service.getMachineBalance();
         
         //determine if user entered coins
         if(userChange > 0.0){
