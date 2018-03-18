@@ -21,7 +21,6 @@ import java.util.List;
 public class VendingMachineController {
     VendingMachineView view;
     private VendingMachineServiceLayer service;
-    private Change bgChange = new Change();
     
     public VendingMachineController(VendingMachineServiceLayer service, VendingMachineView view) {
         this.service = service;
@@ -140,6 +139,7 @@ public class VendingMachineController {
     }
     
     private void returnChange(double userChange, String userSelection) throws VendingMachinePersistenceException{
+        Change bgChange = new Change();
         VendingMachine selectedItem = service.getItem(userSelection);
         userChange = service.getMachineBalance();
         
