@@ -124,16 +124,14 @@ public class VendingMachineController {
             } else if(selectedItem.getNumberOfItem() == 0){
                 //if 0 of item in inventeroy
                 view.displayErrorMessage("There are no more " + selectedItem.getItemName() + " left.");
+                view.displayItemNotAvailable(selectedItem);
             } else if(!userSelection.equals(selectedItem.getItemID())){
                 // if user enters an ID that does not exist
                 view.displayUnknownCommandBanner();
             } else if(userSelection.isEmpty()){
                 //if user has not made a selection
                 view.displayNoSelectionMade();
-            } else if(selectedItem.getNumberOfItem() == 0){
-                //if there is 0 of that item in the inventory
-                view.displayItemNotAvailable(selectedItem);
-            }
+            } 
         } else {
             //user has not entered any coins
             view.displayNoCoinsEntered();
