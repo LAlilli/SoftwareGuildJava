@@ -23,11 +23,11 @@ public interface DVDLibraryDao {
    
    DVD editDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
    
-   double getAverageDVDAge(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   double getAverageDVDAge() throws DVDLibraryPersistenceException;
    
-   DVD getNewestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   List<DVD> getNewestDVD(int ageInYears) throws DVDLibraryPersistenceException;
    
-   DVD getOldestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException;
+   List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException;
    
    /*
     Find all movies released in the last N years

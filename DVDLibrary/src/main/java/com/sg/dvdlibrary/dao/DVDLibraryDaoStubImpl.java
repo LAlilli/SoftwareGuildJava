@@ -71,4 +71,19 @@ public class DVDLibraryDaoStubImpl implements DVDLibraryDao {
             return null;
         }
     }
+
+    @Override
+    public double getAverageDVDAge() throws DVDLibraryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<DVD> getNewestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

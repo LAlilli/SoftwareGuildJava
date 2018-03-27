@@ -7,12 +7,12 @@ package com.sg.dvdlibrary.dao;
 
 import com.sg.dvdlibrary.dto.DVD;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
@@ -51,8 +51,9 @@ public class DVDLibraryDaoTest {
      */
     @org.junit.Test
     public void testAddGetDVD() throws Exception {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Prometheus");
-        dvd.setReleaseDate(LocalDate.parse("12/15/2015"));
+        dvd.setReleaseDate(LocalDate.parse("12/15/2015", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Smith");
         dvd.setStudioName("Solomon");
@@ -70,8 +71,9 @@ public class DVDLibraryDaoTest {
      */
     @org.junit.Test
     public void testGetAllDVDs() throws Exception {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd1 = new DVD("Prometheus");
-        dvd1.setReleaseDate(LocalDate.parse("12/15/2015"));
+        dvd1.setReleaseDate(LocalDate.parse("12/15/2015", df));
         dvd1.setMPAARating("R");
         dvd1.setDirectorName("Smith");
         dvd1.setStudioName("Solomon");
@@ -80,7 +82,7 @@ public class DVDLibraryDaoTest {
         dao.addDVD(dvd1.getTitle(), dvd1);
         
         DVD dvd2 = new DVD("Alien");
-        dvd2.setReleaseDate(LocalDate.parse("10/31/2012"));
+        dvd2.setReleaseDate(LocalDate.parse("10/31/2012", df));
         dvd2.setMPAARating("R");
         dvd2.setDirectorName("Joey");
         dvd2.setStudioName("Warner");
@@ -96,8 +98,9 @@ public class DVDLibraryDaoTest {
      */
     @org.junit.Test
     public void testRemoveDVD() throws Exception {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd1 = new DVD("Prometheus");
-        dvd1.setReleaseDate(LocalDate.parse("12/15/2015"));
+        dvd1.setReleaseDate(LocalDate.parse("12/15/2015", df));
         dvd1.setMPAARating("R");
         dvd1.setDirectorName("Smith");
         dvd1.setStudioName("Solomon");
@@ -106,7 +109,7 @@ public class DVDLibraryDaoTest {
         dao.addDVD(dvd1.getTitle(), dvd1);
         
         DVD dvd2 = new DVD("Alien");
-        dvd2.setReleaseDate(LocalDate.parse("10/31/2012"));
+        dvd2.setReleaseDate(LocalDate.parse("10/31/2012", df));
         dvd2.setMPAARating("R");
         dvd2.setDirectorName("Joey");
         dvd2.setStudioName("Warner");
@@ -130,8 +133,9 @@ public class DVDLibraryDaoTest {
      */
     @org.junit.Test
     public void testEditGetDVD() throws Exception {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Prometheus");
-        dvd.setReleaseDate(LocalDate.parse("12/15/2015"));
+        dvd.setReleaseDate(LocalDate.parse("12/15/2015", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Smith");
         dvd.setStudioName("Solomon");

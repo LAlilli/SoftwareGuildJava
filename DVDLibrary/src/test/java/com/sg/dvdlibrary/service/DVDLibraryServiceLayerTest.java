@@ -9,10 +9,9 @@ import com.sg.dvdlibrary.dao.DVDLibraryAuditDao;
 import com.sg.dvdlibrary.dao.DVDLibraryAuditDaoStubImpl;
 import com.sg.dvdlibrary.dao.DVDLibraryDao;
 import com.sg.dvdlibrary.dao.DVDLibraryDaoStubImpl;
-import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.DVD;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -53,8 +52,9 @@ public class DVDLibraryServiceLayerTest {
     
     @Test
     public void testCreateDVDDuplicate() throws Exception{
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Alien Covenant");
-        dvd.setReleaseDate(LocalDate.parse("2/2/2015"));
+        dvd.setReleaseDate(LocalDate.parse("02/02/2015", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Swarez");
         dvd.setStudioName("Warner");
@@ -70,8 +70,9 @@ public class DVDLibraryServiceLayerTest {
     
     @Test
     public void testCreateDVDInvalidData() throws Exception{
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Alien Covenant");
-        dvd.setReleaseDate(LocalDate.parse("2/2/2015"));
+        dvd.setReleaseDate(LocalDate.parse("02/02/2015", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Swarez");
         dvd.setStudioName("Warner");
@@ -90,8 +91,9 @@ public class DVDLibraryServiceLayerTest {
      */
     @Test
     public void testAddDVD() throws Exception {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Prometheus");
-        dvd.setReleaseDate(LocalDate.parse("10/31/2012"));
+        dvd.setReleaseDate(LocalDate.parse("10/31/2012", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Smith");
         dvd.setStudioName("Warner");
@@ -135,8 +137,9 @@ public class DVDLibraryServiceLayerTest {
      */
     @Test
     public void testEditDVD() throws Exception {
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Prometheus");
-        dvd.setReleaseDate(LocalDate.parse("10/31/2012"));
+        dvd.setReleaseDate(LocalDate.parse("10/31/2012", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Smith");
         dvd.setStudioName("Warner");

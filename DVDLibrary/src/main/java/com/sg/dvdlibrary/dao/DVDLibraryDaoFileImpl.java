@@ -19,6 +19,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -63,23 +64,29 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
     }
     
     @Override
-    public double getAverageDVDAge(String title, DVD dvds) throws DVDLibraryPersistenceException {
+    public double getAverageDVDAge() throws DVDLibraryPersistenceException {
         loadDVD();
         return dvd.values()
                 .stream()
-                .mapToLong(s -> s.getReleaseDate())
+                .mapToLong(DVD::getMovieAge)
                 .average()
-                .getAsDouble() 
+                .getAsDouble();
     }
    
     @Override
-    public DVD getNewestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException {
-        
+    public List<DVD> getNewestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        return dvd.values()
+                .stream()
+                .filter(s -> s.getMovieAge() > ageInYears)
+                .collect(Collectors.toList());
     }
    
     @Override
-    public DVD getOldestDVD(String title, DVD dvds) throws DVDLibraryPersistenceException {
-        
+    public List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        return dvd.values()
+                .stream()
+                .filter(s -> s.getMovieAge() > ageInYears)
+                .collect(Collectors.toList());
     }
     
     //method for loading DVD info from text file

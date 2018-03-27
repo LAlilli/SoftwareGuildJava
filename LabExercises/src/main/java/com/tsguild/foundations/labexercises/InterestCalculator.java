@@ -44,7 +44,8 @@ public class InterestCalculator {
         
         System.out.println();
         
-        for(i = 1; i <= years; i++){
+        //fix below to use big decimal
+       /* for(i = 1; i <= years; i++){
             System.out.println("Year #" + i);
             System.out.println("Principal at the beginning of the year: $" + principal);
             
@@ -55,7 +56,7 @@ public class InterestCalculator {
             System.out.println("Principal at the end of the year: $" + principal);
             
             System.out.println();
-        }
+        }*/
     }
     
     public BigDecimal calculate(MathOperator operator, BigDecimal operand1, BigDecimal operand2){

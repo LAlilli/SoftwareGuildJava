@@ -5,19 +5,15 @@
  */
 package com.sg.classroster.service;
 
-import com.sg.classroster.dao.ClassRosterAuditDao;
-import com.sg.classroster.dao.ClassRosterAuditDaoStubImpl;
-import com.sg.classroster.dao.ClassRosterDao;
-import com.sg.classroster.dao.ClassRosterDaoStubImpl;
-import com.sg.classroster.dao.ClassRosterPersistenceException;
 import com.sg.classroster.dto.Student;
-import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -28,10 +24,16 @@ public class ClassRosterServiceLayerTest {
     private ClassRosterServiceLayer service;
     
     public ClassRosterServiceLayerTest() {
+        /*
         ClassRosterDao dao = new ClassRosterDaoStubImpl();
         ClassRosterAuditDao auditDao = new ClassRosterAuditDaoStubImpl();
         
         service = new ClassRosterServiceLayerImpl(dao, auditDao);
+        */
+        
+        //instantiate application context
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", ClassRosterServiceLayer.class);
     }
     
     @BeforeClass
@@ -55,7 +57,7 @@ public class ClassRosterServiceLayerTest {
      */
     @Test
     public void testCreateStudent() throws Exception {
-        Student student = new Student("001");
+        Student student = new Student("003");
         student.setFirstName("Joe");
         student.setLastName("Smith");
         student.setCohort(".NET-03");
@@ -65,7 +67,7 @@ public class ClassRosterServiceLayerTest {
 
     @Test
     public void testCreateStudentDuplicateId() throws Exception{
-        Student student = new Student("002");
+        Student student = new Student("001");
         student.setFirstName("Joe");
         student.setLastName("Smith");
         student.setCohort(".NET-03");
@@ -80,7 +82,7 @@ public class ClassRosterServiceLayerTest {
     
     @Test
     public void testCreateStudentInvalidData() throws Exception{
-        Student student = new Student("001");
+        Student student = new Student("004");
         student.setFirstName("");
         student.setLastName("Smith");
         student.setCohort(".NET-03");
