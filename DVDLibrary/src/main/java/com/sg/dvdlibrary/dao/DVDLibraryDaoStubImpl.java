@@ -21,8 +21,9 @@ public class DVDLibraryDaoStubImpl implements DVDLibraryDao {
     List<DVD> dvdList = new ArrayList<>();
     
     public DVDLibraryDaoStubImpl(){
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         onlyDVD = new DVD("Alien Covenant");
-        onlyDVD.setReleaseDate(LocalDate.parse("2/2/2012"));
+        onlyDVD.setReleaseDate(LocalDate.parse("12/15/2015", df));
         onlyDVD.setMPAARating("R");
         onlyDVD.setDirectorName("Smithers");
         onlyDVD.setStudioName("Warner");
@@ -74,16 +75,41 @@ public class DVDLibraryDaoStubImpl implements DVDLibraryDao {
 
     @Override
     public double getAverageDVDAge() throws DVDLibraryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return onlyDVD.getMovieAge();
     }
 
     @Override
     public List<DVD> getNewestDVD(int ageInYears) throws DVDLibraryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dvdList;
     }
 
     @Override
     public List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        return dvdList;
+    }
+
+    @Override
+    public List<DVD> getMoviesReleasedInSetYears(int releasedWithSetYears) throws DVDLibraryPersistenceException {
+        return dvdList;
+    }
+
+    @Override
+    public List<DVD> getMoviesWithSetMpaa(String givenMpaa) throws DVDLibraryPersistenceException {
+        return dvdList;
+    }
+
+    @Override
+    public List<DVD> getMoviesReleasedBySetStudio(String givenStudio) throws DVDLibraryPersistenceException {
+        return dvdList;
+    }
+
+    @Override
+    public List<DVD> getMoviesSetDirectorSortedByMpaa(String givenDirector) throws DVDLibraryPersistenceException {
+        return dvdList;
+    }
+
+    @Override
+    public double getAverageNumberNotes() throws DVDLibraryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

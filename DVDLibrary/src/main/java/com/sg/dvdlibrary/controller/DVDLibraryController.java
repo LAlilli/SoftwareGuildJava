@@ -5,8 +5,6 @@
  */
 package com.sg.dvdlibrary.controller;
 
-import com.sg.dvdlibrary.dao.DVDLibraryDao;
-import com.sg.dvdlibrary.dao.DVDLibraryDaoException;
 import com.sg.dvdlibrary.dao.DVDLibraryPersistenceException;
 import com.sg.dvdlibrary.dto.DVD;
 import com.sg.dvdlibrary.service.DVDLibraryDataValidationException;
@@ -59,6 +57,30 @@ public class DVDLibraryController {
                         searchDVDByTitle();
                         break;
                     case 7:
+                        getAverageDvdAge();
+                        break;
+                    case 8:
+                        getOldestDvd();
+                        break;
+                    case 9:
+                        getNewestDvd();
+                        break;
+                    case 10:
+                        displayMoviesReleasedInSetYears();
+                        break;
+                    case 11:
+                        displayMoviesWithGivenMpaa();
+                        break;
+                    case 12:
+                        displayMoviesByDirector();
+                        break;
+                    case 13:
+                        displayMoviesByStudio();
+                        break;
+                    case 14:
+                        displayAverageNumberOfNotes();
+                        break;
+                    case 15:
                         keepGoing = false;
                         break;
                     default:
@@ -81,6 +103,70 @@ public class DVDLibraryController {
         return view.editMenuSelection();
     }
 
+    //average DVD age
+    private void getAverageDvdAge() throws DVDLibraryPersistenceException{
+        double averageAge = service.getAverageDVDAge();
+        
+        view.displayAverageAgeMessage(averageAge);
+    }
+    
+    //oldest DVD
+    public void getOldestDvd() throws DVDLibraryPersistenceException{
+        int ageInYears = 0;
+        DVD dvd = new DVD();
+        List<DVD> dvdList = service.getOldestDVD(ageInYears);
+        
+        view.displayOldestDvdMessage(dvd);
+    }
+    
+    //newest DVD
+    public void getNewestDvd() throws DVDLibraryPersistenceException{
+        int ageInYears = 0;
+        DVD dvd = new DVD();
+        List<DVD> dvdList = service.getNewestDVD(ageInYears);
+        
+        view.displayNewestDvdMessage(dvd);
+    }
+    
+    //released in past N years
+    private void displayMoviesReleasedInSetYears() throws DVDLibraryPersistenceException {
+        int years = view.displayMoviesReleasedSetYearsPrompt();
+        DVD dvd = new DVD();
+        List<DVD> dvdList = service.getMoviesReleasedInSetYears(years);
+        view.displayMoviesReleasedSetYears(years);
+    }
+    
+    //movies with given MPAA rating
+    private void displayMoviesWithGivenMpaa() throws DVDLibraryPersistenceException {
+        String givenMpaa = view.displayMoviesSortedByMpaaPrompt();
+        DVD dvd = new DVD();
+        List<DVD> dvdList = service.getMoviesWithSetMpaa(givenMpaa);
+        view.displayMoviesSortedByMpaa(givenMpaa);
+    }
+    
+    //movies by specific director, sorted by MPAA
+    private void displayMoviesByDirector() throws DVDLibraryPersistenceException {
+        String givenDirector = view.displayMoviesSortedByDirectorPrompt();
+        DVD dvd = new DVD();
+        List<DVD> dvdList = service.getMoviesSetDirectorSortedByMpaa(givenDirector);
+        view.displayMoviesSortedByDirector(givenDirector);
+    }
+    
+    //movies by specific studio
+    private void displayMoviesByStudio() throws DVDLibraryPersistenceException {
+        String givenStudio = view.displayMoviesSortedByStudioPrompt();
+        DVD dvd = new DVD();
+        List<DVD> dvdList = service.getMoviesReleasedBySetStudio(givenStudio);
+        view.displayMoviesSortedByStudio(givenStudio);
+    }
+    
+    //average number of notes
+    private void displayAverageNumberOfNotes() throws DVDLibraryPersistenceException {
+        double averageNumNotes = service.getAverageNumberNotes();
+        
+        view.displayAverageNumberNotes(averageNumNotes);
+    }
+    
     //add a new DVD
     private void addDVD() throws DVDLibraryPersistenceException {
         view.displayCreateDVDBanner();

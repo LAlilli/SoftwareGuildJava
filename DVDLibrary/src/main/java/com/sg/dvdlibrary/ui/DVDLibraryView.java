@@ -30,9 +30,17 @@ public class DVDLibraryView {
         io.print("4. List All DVDs");
         io.print("5. Display Information for DVD");
         io.print("6. Search for DVD by Title");
-        io.print("7. Exit");
+        io.print("7. Find the Average Age of Movies in Collection");
+        io.print("8. Find the Oldest Movie in Collection");
+        io.print("9. Find the Newest Movie in Collection");
+        io.print("10. Find all Movies Released in the Last 'N' Years");
+        io.print("11. Find all Movies with Given MPAA Rating");
+        io.print("12. Find all Movies by a Given Director");
+        io.print("13. Find all Movies Released By Specific Studio");
+        io.print("14. Find the Average Number of Notes in the Collection");
+        io.print("15. Exit");
 
-        return io.readInt("Please select from the above choices.", 1, 7);
+        return io.readInt("Please select from the above choices.", 1, 15);
     }
     
     //adding new dvds
@@ -136,6 +144,66 @@ public class DVDLibraryView {
     public void displayErrorMessage(String errorMsg) {
         io.print("=== ERROR ===");
         io.print(errorMsg);
+    }
+    
+    //average dvd age
+    public void displayAverageAgeMessage(double averageAge){
+        io.readString("Average dvd age is: " + averageAge + ". Please hit enter to continue.");
+    }
+    
+    //oldest dvd
+    public void displayOldestDvdMessage(DVD dvd){
+        io.readString("The oldest DVD is: " + dvd.getTitle() + ". Please hit enter to continue.");
+    }
+    
+    //newest dvd
+    public void displayNewestDvdMessage(DVD dvd){
+        io.readString("The newest DVD is: " + dvd.getTitle() + ". Please hit enter to continue.");
+    }
+    
+    //released within N years
+    public void displayMoviesReleasedSetYears(int setYears){
+        io.print("The following movies have been released in the last " + setYears + ": ");
+        io.readString("Please hit enter to continue.");
+    }
+    
+    public int displayMoviesReleasedSetYearsPrompt(){
+        return io.readInt("Please enter the number of years you would like to search by: ");
+    }
+    
+    //given MPAA rating
+    public void displayMoviesSortedByMpaa(String givenMpaa){
+        io.print("The following movies have MPAA Rating of " + givenMpaa + ": ");
+        io.readString("Please hit enter to continue.");
+    }
+    
+    public String displayMoviesSortedByMpaaPrompt(){
+       return io.readString("Please enter an MPAA Rating to search by: ");
+    }
+    
+    //movies by director, sorted by MPAA
+    public void displayMoviesSortedByDirector(String givenDirector){
+        io.print("The following movies were directed by " + givenDirector + ": ");
+        io.readString("Please hit enter to continue.");
+    }
+    
+    public String displayMoviesSortedByDirectorPrompt(){
+        return io.readString("Please enter a Director's name to search by to search by: ");
+    }
+    
+    //movies by studio
+    public void displayMoviesSortedByStudio(String givenStudio){
+        io.print("The following movies were produced by studio " + givenStudio + ": ");
+        io.readString("Please hit enter to continue.");
+    }
+    
+    public String displayMoviesSortedByStudioPrompt(){
+        return io.readString("Please enter a Studio to search by: ");
+    }
+    
+    //average number of notes
+    public void displayAverageNumberNotes(double numNotes){
+        io.readString("The average number of notes for the movies in this collection is: " + numNotes + ". Please hit enter to continue.");
     }
     
     //editing DVD

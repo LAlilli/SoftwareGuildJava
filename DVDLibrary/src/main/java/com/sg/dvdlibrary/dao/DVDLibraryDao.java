@@ -29,11 +29,13 @@ public interface DVDLibraryDao {
    
    List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException;
    
-   /*
-    Find all movies released in the last N years
-    Find all the movies with a given MPAA rating
-    Find all the movies by a given director
-    Find the average number of notes associated with movies in your collection
-    When searching by director, the movies should be sorted into separate data structures by MPAA rating.
-   */
+   List<DVD> getMoviesReleasedInSetYears(int releasedWithSetYears) throws DVDLibraryPersistenceException;
+   
+   List<DVD> getMoviesWithSetMpaa(String givenMpaa) throws DVDLibraryPersistenceException;
+   
+   List<DVD> getMoviesReleasedBySetStudio(String givenStudio) throws DVDLibraryPersistenceException;
+   
+   List<DVD> getMoviesSetDirectorSortedByMpaa(String givenDirector) throws DVDLibraryPersistenceException;
+   
+   double getAverageNumberNotes() throws DVDLibraryPersistenceException;
 }

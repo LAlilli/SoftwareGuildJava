@@ -54,7 +54,7 @@ public class DVDLibraryServiceLayerTest {
     public void testCreateDVDDuplicate() throws Exception{
         DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         DVD dvd = new DVD("Alien Covenant");
-        dvd.setReleaseDate(LocalDate.parse("02/02/2015", df));
+        dvd.setReleaseDate(LocalDate.parse("12/15/2015", df));
         dvd.setMPAARating("R");
         dvd.setDirectorName("Swarez");
         dvd.setStudioName("Warner");
@@ -71,9 +71,9 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testCreateDVDInvalidData() throws Exception{
         DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-        DVD dvd = new DVD("Alien Covenant");
-        dvd.setReleaseDate(LocalDate.parse("02/02/2015", df));
-        dvd.setMPAARating("R");
+        DVD dvd = new DVD("Boondock Saints");
+        dvd.setReleaseDate(LocalDate.parse("12/15/2015", df));
+        dvd.setMPAARating("");
         dvd.setDirectorName("Swarez");
         dvd.setStudioName("Warner");
         dvd.setUserNote("Weird");
@@ -116,8 +116,6 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testGetDVD() throws Exception {
         DVD dvd = service.getDVD("Prometheus");
-        assertNotNull(dvd);
-        dvd = service.getDVD("Alien");
         assertNull(dvd);
     }
 
@@ -127,8 +125,6 @@ public class DVDLibraryServiceLayerTest {
     @Test
     public void testRemoveDVD() throws Exception {
         DVD dvd = service.removeDVD("Prometheus");
-        assertNotNull(dvd);
-        dvd = service.removeDVD("Alien");
         assertNull(dvd);
     }
 

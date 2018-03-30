@@ -67,7 +67,7 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer{
         dao.addDVD(dvd.getTitle(), dvd);
 
         auditDao.writeAuditEntry(
-            "DVD " + dvd.getTitle() + " CREATED.");
+            "DVD " + dvd.getTitle() + " EDITED.");
     }
     
     private void validateDVDData(DVD dvd) throws
@@ -90,4 +90,44 @@ public class DVDLibraryServiceLayerImpl implements DVDLibraryServiceLayer{
                     "ERROR: All fields [Title, Release Date, MPAA Rating, Director Name, Studio Name, User Note] are required.");
         }
     } 
+
+    @Override
+    public double getAverageDVDAge() throws DVDLibraryPersistenceException {
+        return dao.getAverageDVDAge();
+    }
+
+    @Override
+    public List<DVD> getNewestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        return dao.getNewestDVD(ageInYears);
+    }
+
+    @Override
+    public List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException {
+        return dao.getOldestDVD(ageInYears);
+    }
+
+    @Override
+    public List<DVD> getMoviesReleasedInSetYears(int releasedWithSetYears) throws DVDLibraryPersistenceException {
+        return dao.getMoviesReleasedInSetYears(releasedWithSetYears);
+    }
+
+    @Override
+    public List<DVD> getMoviesWithSetMpaa(String givenMpaa) throws DVDLibraryPersistenceException {
+        return dao.getMoviesWithSetMpaa(givenMpaa);
+    }
+
+    @Override
+    public List<DVD> getMoviesReleasedBySetStudio(String givenStudio) throws DVDLibraryPersistenceException {
+        return dao.getMoviesReleasedBySetStudio(givenStudio);
+    }
+
+    @Override
+    public List<DVD> getMoviesSetDirectorSortedByMpaa(String givenDirector) throws DVDLibraryPersistenceException {
+        return dao.getMoviesSetDirectorSortedByMpaa(givenDirector);
+    }
+
+    @Override
+    public double getAverageNumberNotes() throws DVDLibraryPersistenceException {
+        return dao.getAverageNumberNotes();
+    }
 }

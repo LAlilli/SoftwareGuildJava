@@ -31,4 +31,20 @@ public interface DVDLibraryServiceLayer {
     void editDVD(String title, DVD dvd) throws
             DVDLibraryDataValidationException,
             DVDLibraryPersistenceException;
+    
+    double getAverageDVDAge() throws DVDLibraryPersistenceException;
+   
+    List<DVD> getNewestDVD(int ageInYears) throws DVDLibraryPersistenceException;
+   
+    List<DVD> getOldestDVD(int ageInYears) throws DVDLibraryPersistenceException;
+    
+    List<DVD> getMoviesReleasedInSetYears(int releasedWithSetYears) throws DVDLibraryPersistenceException;
+   
+    List<DVD> getMoviesWithSetMpaa(String givenMpaa) throws DVDLibraryPersistenceException;
+
+    List<DVD> getMoviesReleasedBySetStudio(String givenStudio) throws DVDLibraryPersistenceException;
+
+    List<DVD> getMoviesSetDirectorSortedByMpaa(String givenDirector) throws DVDLibraryPersistenceException;
+
+    double getAverageNumberNotes() throws DVDLibraryPersistenceException;
 }

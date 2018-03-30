@@ -25,6 +25,10 @@ public class DVD {
         this.title = title;
     }
 
+    public DVD() {
+        
+    }
+
     // getter and setter for title
     public String getTitle() {
         return title;

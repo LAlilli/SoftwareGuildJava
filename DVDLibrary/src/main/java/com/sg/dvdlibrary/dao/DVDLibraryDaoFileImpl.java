@@ -14,10 +14,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -87,6 +89,51 @@ public class DVDLibraryDaoFileImpl implements DVDLibraryDao{
                 .stream()
                 .filter(s -> s.getMovieAge() > ageInYears)
                 .collect(Collectors.toList());
+    }    
+    
+    @Override
+    public List<DVD> getMoviesReleasedInSetYears(int releasedWithSetYears) throws DVDLibraryPersistenceException {
+        return dvd.values()
+                .stream()
+                .filter(s -> s.getMovieAge() > releasedWithSetYears)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DVD> getMoviesWithSetMpaa(String givenMpaa) throws DVDLibraryPersistenceException {
+        return dvd.values()
+                .stream()
+                .filter(s -> s.getMPAARating().equals(givenMpaa))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DVD> getMoviesReleasedBySetStudio(String givenStudio) throws DVDLibraryPersistenceException {
+        return dvd.values()
+                .stream()
+                .filter(s -> s.getStudioName().equals(givenStudio))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<DVD> getMoviesSetDirectorSortedByMpaa(String givenDirector) throws DVDLibraryPersistenceException {
+        return dvd.values()
+                .stream()
+                .filter(s -> s.getDirectorName().equals(givenDirector))
+                .sorted(Comparator.comparing(DVD::getMPAARating))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public double getAverageNumberNotes() throws DVDLibraryPersistenceException {
+        loadDVD();
+        return dvd.values()
+                .stream()
+                .filter(s -> Objects.nonNull(s))
+                .map(s -> s.getUserNote())
+                .filter(userNote -> Objects.nonNull(userNote))
+                .count();
+                //.average();
     }
     
     //method for loading DVD info from text file

@@ -6,16 +6,9 @@
 package com.sg.dvdlibrary;
 
 import com.sg.dvdlibrary.controller.DVDLibraryController;
-import com.sg.dvdlibrary.dao.DVDLibraryAuditDao;
-import com.sg.dvdlibrary.dao.DVDLibraryAuditDaoFileImpl;
-import com.sg.dvdlibrary.dao.DVDLibraryDao;
-import com.sg.dvdlibrary.dao.DVDLibraryDaoFileImpl;
 import com.sg.dvdlibrary.service.DVDLibraryDataValidationException;
-import com.sg.dvdlibrary.service.DVDLibraryServiceLayer;
-import com.sg.dvdlibrary.service.DVDLibraryServiceLayerImpl;
-import com.sg.dvdlibrary.ui.DVDLibraryView;
-import com.sg.dvdlibrary.ui.UserIO;
-import com.sg.dvdlibrary.ui.UserIOConsoleImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -23,19 +16,12 @@ import com.sg.dvdlibrary.ui.UserIOConsoleImpl;
  */
 public class App {
     public static void main(String[] args) throws DVDLibraryDataValidationException {
-        // Instantiate the UserIO implementation
-        UserIO myIo = new UserIOConsoleImpl();
-        // Instantiate the View and wire the UserIO implementation into it
-        DVDLibraryView myView = new DVDLibraryView(myIo);
-        // Instantiate the DAO
-        DVDLibraryDao myDao = new DVDLibraryDaoFileImpl();
-        // Instantiate the Audit DAO
-        DVDLibraryAuditDao myAuditDao = new DVDLibraryAuditDaoFileImpl();
-        // Instantiate the Service Layer and wire the DAO and Audit DAO into it
-        DVDLibraryServiceLayer myService = new DVDLibraryServiceLayerImpl(myDao, myAuditDao);
-        // Instantiate the Controller and wire the Service Layer into it
-        DVDLibraryController controller = new DVDLibraryController(myService, myView);
-        // Kick off the Controller
+
+        //instantiate spring container
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        
+        //grab controller and call run method
+        DVDLibraryController controller = ctx.getBean("controller", DVDLibraryController.class);
         controller.run();
     }
 }
