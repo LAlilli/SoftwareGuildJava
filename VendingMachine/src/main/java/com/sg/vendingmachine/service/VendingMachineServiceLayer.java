@@ -5,6 +5,8 @@
  */
 package com.sg.vendingmachine.service;
 
+import com.sg.vendingmachine.dao.InsufficientFundsException;
+import com.sg.vendingmachine.dao.NoItemInventoryException;
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
 import com.sg.vendingmachine.dto.VendingMachine;
 import java.util.List;
@@ -25,7 +27,7 @@ public interface VendingMachineServiceLayer {
     
     void insertCoin(double userMoney) throws VendingMachinePersistenceException;
     
-    VendingMachine selectItem(String itemID) throws VendingMachinePersistenceException;
+    VendingMachine selectItem(String itemID) throws VendingMachinePersistenceException, NoItemInventoryException, InsufficientFundsException;
     
     double getMachineBalance() throws VendingMachinePersistenceException;
 }

@@ -48,7 +48,7 @@ public class VendingMachineBankRollDaoImpl implements VendingMachineBankRollDao 
                     new FileReader(BANKROLL_FILE)));
         } catch (FileNotFoundException e) {
             throw new VendingMachinePersistenceException(
-                "-_- Could not load roster data into memory.", e);
+                "-_- Could not load data into memory.", e);
         }
         
         while (scanner.hasNextDouble()) {
@@ -72,7 +72,7 @@ public class VendingMachineBankRollDaoImpl implements VendingMachineBankRollDao 
         try {
             out = new PrintWriter(new FileWriter(BANKROLL_FILE));
         } catch (IOException e) {
-            throw new VendingMachinePersistenceException("Could not save dvd data.", e);
+            throw new VendingMachinePersistenceException("Could not save inventory data.", e);
         }
 
         //create variable to save money
@@ -83,5 +83,4 @@ public class VendingMachineBankRollDaoImpl implements VendingMachineBankRollDao 
         // Clean up
         out.close();
     }
-
 }

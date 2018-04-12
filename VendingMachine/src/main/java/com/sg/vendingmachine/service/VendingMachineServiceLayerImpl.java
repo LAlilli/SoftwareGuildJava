@@ -5,6 +5,8 @@
  */
 package com.sg.vendingmachine.service;
 
+import com.sg.vendingmachine.dao.InsufficientFundsException;
+import com.sg.vendingmachine.dao.NoItemInventoryException;
 import com.sg.vendingmachine.dao.VendingMachineAuditDao;
 import com.sg.vendingmachine.dao.VendingMachineBankRollDao;
 import com.sg.vendingmachine.dao.VendingMachinePersistenceException;
@@ -39,7 +41,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     public VendingMachine removeItem(int numberOfItem, String itemName, String itemID) throws VendingMachinePersistenceException {
         VendingMachine removedItem = dao.removeItem(numberOfItem, itemName, itemID);
         // Write to audit log
-        auditDao.writeAuditEntry(numberOfItem + " of " + itemName + " REMOVED.");
+        //auditDao.writeAuditEntry(numberOfItem + " of " + itemName + " REMOVED.");
         return dao.removeItem(numberOfItem, itemName, itemID);
     }
 
@@ -51,8 +53,7 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
 
         dao.addItem(allItems.getItemID(), allItems);
 
-        auditDao.writeAuditEntry(
-            "Item " + allItems.getItemID() + " Added.");
+        //auditDao.writeAuditEntry("Item " + allItems.getItemID() + " Added.");
     }
 
     @Override
@@ -67,7 +68,13 @@ public class VendingMachineServiceLayerImpl implements VendingMachineServiceLaye
     }
 
     @Override
-    public VendingMachine selectItem(String itemID) throws VendingMachinePersistenceException {        
+    public VendingMachine selectItem(String itemID) throws VendingMachinePersistenceException, NoItemInventoryException, InsufficientFundsException {
+        if(dao.getItem(itemID).getNumberOfItem() == 0){
+            throw new NoItemInventoryException("NoItemInventoryException: Item not available.");
+        }
+        else if(dao.getItem(itemID).getItemCost() > bankrollDao.getMachineBalance()){
+            throw new InsufficientFundsException("InsufficientFundsException: You do not have enough money for that item.");
+        }
         return dao.getItem(itemID);
     }
 

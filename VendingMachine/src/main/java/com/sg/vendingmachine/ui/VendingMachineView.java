@@ -82,8 +82,4 @@ public class VendingMachineView {
     public void displayNoCoinsEntered(){
         io.print("You haven't entered any coins. ");
     }
-    
-    public void displayItemNotAvailable(VendingMachine selectedItem){
-        io.print(selectedItem.getItemName() + " is not currently available.");
-    }
 }

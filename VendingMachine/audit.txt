@@ -1,116 +1,69 @@
-2018-03-03T20:39:43.974 : Snickers
-2018-03-03T20:39:43.998 : Snickers
-2018-03-03T20:41:23.187 : Snickers
-2018-03-03T20:41:23.220 : Snickers
-2018-03-03T20:47:08.969 : Snickers
-2018-03-03T20:47:08.997 : Snickers
-2018-03-03T20:47:47.898 : Snickers
-2018-03-03T20:47:47.929 : Snickers
-2018-03-03T20:48:53.172 : Snickers
-2018-03-03T20:48:53.203 : Snickers
-2018-03-04T15:29:25.798 : Snickers
-2018-03-04T15:29:25.845 : Snickers
-2018-03-04T15:30:59.459 : Snickers
-2018-03-04T15:30:59.490 : Snickers
-2018-03-05T10:07:55.579 : Snickers
-2018-03-05T10:07:55.610 : Snickers
-2018-03-05T11:07:23.035 : Snickers
-2018-03-05T11:07:23.067 : Snickers
-2018-03-05T11:07:51.442 : Snickers
-2018-03-05T11:07:51.474 : Snickers
-2018-03-05T11:29:38.628 : 10 of Snickers REMOVED.
-2018-03-05T11:31:21.888 : 10 of Snickers REMOVED.
-2018-03-05T11:33:22.195 : 10 of Snickers REMOVED.
-2018-03-05T11:39:13.004 : 10 of Snickers REMOVED.
-2018-03-05T11:41:16.008 : 10 of Snickers REMOVED.
-2018-03-05T12:03:33.916 : 10 of Snickers REMOVED.
-2018-03-05T12:06:57.878 : 9 of Snickers REMOVED.
-2018-03-05T12:07:58.612 : 8 of Snickers REMOVED.
-2018-03-05T12:09:26.468 : 7 of Snickers REMOVED.
-2018-03-05T12:10:17.011 : 9 of Snickers REMOVED.
-2018-03-05T12:10:54.245 : 9 of Ruffles REMOVED.
-2018-03-05T12:15:09.302 : 8 of Snickers REMOVED.
-2018-03-05T12:16:08.949 : 7 of Snickers REMOVED.
-2018-03-05T12:17:50.447 : 10 of Snickers REMOVED.
-2018-03-05T12:18:20.044 : 9 of Snickers REMOVED.
-2018-03-05T12:30:24.614 : 8 of Snickers REMOVED.
-2018-03-05T12:31:15.216 : 9 of Snickers REMOVED.
-2018-03-05T12:34:05.658 : 8 of Snickers REMOVED.
-2018-03-05T12:34:50.226 : 7 of Snickers REMOVED.
-2018-03-05T13:03:02.939 : 9 of Snickers REMOVED.
-2018-03-05T13:04:39.548 : 8 of Snickers REMOVED.
-2018-03-05T13:06:08.737 : 7 of Snickers REMOVED.
-2018-03-05T13:07:56.145 : 6 of Snickers REMOVED.
-2018-03-05T13:08:16.522 : 8 of Ruffles REMOVED.
-2018-03-05T13:08:58.061 : 11 of Cliff Bar REMOVED.
-2018-03-05T13:23:14.889 : 8 of Snickers REMOVED.
-2018-03-05T13:29:40.992 : 7 of Snickers REMOVED.
-2018-03-05T13:31:06.949 : 10 of Cliff Bar REMOVED.
-2018-03-05T13:34:22.869 : 10 of Roll-up REMOVED.
-2018-03-05T13:38:24.586 : 8 of Milky Way REMOVED.
-2018-03-05T14:03:03.013 : 0 of Snickers REMOVED.
-2018-03-12T16:41:32.977 : Snickers
-2018-03-12T16:41:33.008 : Snickers
-2018-03-12T16:43:13.476 : Snickers
-2018-03-12T16:43:13.523 : Snickers
-2018-03-12T16:43:54.369 : Snickers
-2018-03-12T16:43:54.400 : Snickers
-2018-03-13T17:02:00.619 : Snickers
-2018-03-13T17:02:00.666 : Snickers
-2018-03-13T17:03:32.131 : Snickers
-2018-03-13T17:03:32.162 : Snickers
-2018-03-13T17:07:42.872 : Snickers
-2018-03-13T17:07:42.918 : Snickers
-2018-03-13T17:09:00.126 : 7 of Fruit Snack REMOVED.
-2018-03-13T17:13:51.737 : 10 of Fruit Snack REMOVED.
-2018-03-13T17:15:08.305 : 9 of Fruit Snack REMOVED.
-2018-03-13T17:22:44.910 : 10 of Fruit Snack REMOVED.
-2018-03-13T19:43:40.042 : 9 of Fruit Snack REMOVED.
-2018-03-13T19:44:14.837 : 8 of Fruit Snack REMOVED.
-2018-03-13T19:49:00.324 : 7 of Fruit Snack REMOVED.
-2018-03-13T19:52:34.976 : 6 of Fruit Snack REMOVED.
-2018-03-13T19:53:38.450 : 5 of Fruit Snack REMOVED.
-2018-03-13T19:55:42.163 : 4 of Fruit Snack REMOVED.
-2018-03-13T19:57:29.355 : 3 of Fruit Snack REMOVED.
-2018-03-13T19:59:21.786 : 2 of Fruit Snack REMOVED.
-2018-03-13T19:59:53.599 : 1 of Fruit Snack REMOVED.
-2018-03-13T20:00:39.495 : 8 of Hot Pockets REMOVED.
-2018-03-13T20:53:28.395 : 10 of Fruit Snack REMOVED.
-2018-03-13T20:55:22.837 : 9 of Fruit Snack REMOVED.
-2018-03-13T20:56:07.289 : 8 of Fruit Snack REMOVED.
-2018-03-13T21:07:18.930 : 10 of Fruit Snack REMOVED.
-2018-03-13T21:08:26.649 : 9 of Fruit Snack REMOVED.
-2018-03-13T21:10:28.446 : 8 of Fruit Snack REMOVED.
-2018-03-13T21:14:19.388 : 7 of Fruit Snack REMOVED.
-2018-03-13T21:16:05.508 : 10 of Fruit Snack REMOVED.
-2018-03-13T21:32:20.787 : 9 of Fruit Snack REMOVED.
-2018-03-13T21:33:25.039 : 8 of Fruit Snack REMOVED.
-2018-03-13T21:34:36.835 : 7 of Fruit Snack REMOVED.
-2018-03-13T21:36:08.601 : 6 of Fruit Snack REMOVED.
-2018-03-13T21:39:49.553 : 5 of Fruit Snack REMOVED.
-2018-03-13T21:42:23.740 : 4 of Fruit Snack REMOVED.
-2018-03-13T21:42:56.476 : 3 of Fruit Snack REMOVED.
-2018-03-13T21:46:47.086 : 10 of Fruit Snack REMOVED.
-2018-03-13T21:48:03.306 : 9 of Fruit Snack REMOVED.
-2018-03-13T21:49:44.214 : 8 of Fruit Snack REMOVED.
-2018-03-13T21:50:13.075 : 7 of Fruit Snack REMOVED.
-2018-03-13T21:51:13.308 : 6 of Fruit Snack REMOVED.
-2018-03-13T21:52:39.334 : 5 of Fruit Snack REMOVED.
-2018-03-13T21:53:26.756 : 4 of Fruit Snack REMOVED.
-2018-03-13T21:54:30.304 : 3 of Fruit Snack REMOVED.
-2018-03-13T21:55:49.083 : 2 of Fruit Snack REMOVED.
-2018-03-13T21:58:33.809 : 1 of Fruit Snack REMOVED.
-2018-03-13T21:59:35.525 : 10 of Fruit Snack REMOVED.
-2018-03-13T22:00:30.778 : 9 of Fruit Snack REMOVED.
-2018-03-13T22:01:54.364 : 8 of Fruit Snack REMOVED.
-2018-03-13T22:03:07.913 : 7 of Fruit Snack REMOVED.
-2018-03-13T22:05:57.320 : 6 of Fruit Snack REMOVED.
-2018-03-14T19:05:58.586 : 11 of Skittles REMOVED.
-2018-03-18T12:17:56.242 : Snickers
-2018-03-18T12:17:56.274 : Snickers
-2018-03-18T12:18:17.886 : 1 of Ruffles REMOVED.
-2018-03-21T16:30:22.300 : Snickers
-2018-03-21T16:30:22.374 : Snickers
-2018-03-21T16:30:58.890 : Snickers
-2018-03-21T16:30:58.962 : Snickers
-2018-03-21T16:32:43.905 : 1 of Skittles REMOVED.
+2018-04-10T16:05:58.713 : Snickers
+2018-04-10T16:05:58.738 : Snickers
+2018-04-10T16:06:18.780 : Snickers
+2018-04-10T16:06:18.814 : Snickers
+2018-04-10T16:36:45.070 : Snickers
+2018-04-10T16:36:45.102 : Snickers
+2018-04-10T16:36:58.954 : Snickers
+2018-04-10T16:36:59.001 : Snickers
+2018-04-10T17:08:04.492 : Snickers
+2018-04-10T17:08:04.523 : Snickers
+2018-04-10T17:08:21.243 : Snickers
+2018-04-10T17:08:21.275 : Snickers
+2018-04-10T17:09:59.730 : Snickers
+2018-04-10T17:09:59.771 : Snickers
+2018-04-10T17:12:06.036 : Snickers
+2018-04-10T17:12:06.067 : Snickers
+2018-04-10T17:12:22.704 : removeItem: Snickers
+2018-04-10T17:13:47.227 : Snickers
+2018-04-10T17:13:47.258 : Snickers
+2018-04-10T17:14:06.766 : Snickers
+2018-04-10T17:14:06.797 : Snickers
+2018-04-10T17:16:57.786 : Snickers
+2018-04-10T17:16:57.818 : Snickers
+2018-04-10T17:21:48.194 : Snickers
+2018-04-10T17:21:48.225 : Snickers
+2018-04-10T17:23:16.379 : Snickers
+2018-04-10T17:23:16.411 : Snickers
+2018-04-10T17:43:00.962 : Snickers
+2018-04-10T17:43:00.993 : Snickers
+2018-04-10T18:09:01.206 : Snickers
+2018-04-10T18:09:01.237 : Snickers
+2018-04-10T18:09:19.866 : selectItem: B5
+2018-04-10T18:13:46.619 : Snickers
+2018-04-10T18:13:46.650 : Snickers
+2018-04-10T18:14:07.112 : selectItem: B5Item not available.
+2018-04-10T18:15:31.710 : Snickers
+2018-04-10T18:15:31.741 : Snickers
+2018-04-10T18:15:52.294 : selectItem: B5 | Exception thrown: null
+2018-04-10T18:16:26.579 : selectItem: B5 | Exception thrown: class com.sg.vendingmachine.dao.NoItemInventoryException
+2018-04-10T18:18:06.701 : selectItem: B5 | Exception thrown: com.sg.vendingmachine.dao.NoItemInventoryException: Item not available.
+2018-04-10T18:24:11.840 : selectItem: B5 | Exception thrown: null
+2018-04-10T18:26:56.629 : selectItem: B5 | Exception thrown: null
+2018-04-11T19:58:57.483 : Snickers
+2018-04-11T19:58:57.592 : Snickers
+2018-04-11T19:59:30.889 : Snickers
+2018-04-11T19:59:30.921 : Snickers
+2018-04-11T19:59:47.968 : selectItem: B5 | Exception thrown: null
+2018-04-11T19:59:59.240 : selectItem: A2 | Exception thrown: null
+2018-04-11T20:02:33.656 : Snickers
+2018-04-11T20:02:33.687 : Snickers
+2018-04-11T20:02:54.958 : selectItem: B5 | Exception thrown: Item not available.
+2018-04-11T20:02:59.762 : selectItem: A2 | Exception thrown: Item not available.
+2018-04-11T20:04:56.364 : Snickers
+2018-04-11T20:04:56.396 : Snickers
+2018-04-11T20:05:22.724 : selectItem: A2 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-11T20:06:38.437 : selectItem: A1 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-11T20:08:04.202 : Snickers
+2018-04-11T20:08:04.233 : Snickers
+2018-04-11T20:08:40.337 : selectItem: A2 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-11T20:08:58.594 : selectItem: A1 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-11T20:14:55.469 : Snickers
+2018-04-11T20:14:55.500 : Snickers
+2018-04-11T20:15:16.277 : selectItem: A2 | Exception thrown: InsufficientFundsException: You do not have enough money for that item.
+2018-04-11T20:15:33.299 : selectItem: B5 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-11T20:17:21.452 : Snickers
+2018-04-11T20:17:21.483 : Snickers
+2018-04-11T20:17:50.046 : selectItem: A2 | Exception thrown: InsufficientFundsException: You do not have enough money for that item.
+2018-04-11T20:17:55.068 : selectItem: B5 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-11T20:18:01.486 : removeItem: Snickers

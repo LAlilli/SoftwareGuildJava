@@ -1,6 +1,3 @@
-2018-02-12T19:59:03.382 : DVD george of the jungle CREATED.
-2018-02-25T14:12:01.754 : DVD kill bill CREATED.
-2018-02-25T14:14:55.708 : DVD kill bill CREATED.
-2018-02-25T14:32:37.660 : DVD george of the jungle CREATED.
-2018-02-25T15:37:17 : DVD serenity CREATED.
-2018-03-29T19:37:47.843 : DVD Kill Bill CREATED.
+2018-04-03T20:20:42.311 : addDVD: Title: Kill Bill |Release Date: 2008-12-25 |MPAA Rating: R |Director: Tarantino |Studio: Gojira |User Note: Weird but amazing
+2018-04-03T20:21:24.320 : editDVD: Kill BillTitle: Kill Bill |Release Date: 2008-12-25 |MPAA Rating: R |Director: Tarantino |Studio: Pika |User Note: Weird but amazing
+2018-04-03T20:21:49.102 : removeDVD: Kill Bill

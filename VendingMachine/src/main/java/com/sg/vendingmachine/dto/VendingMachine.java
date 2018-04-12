@@ -89,7 +89,9 @@ public class VendingMachine {
         }
         return true;
     }
-
     
-    
+    @Override
+    public String toString() {
+        return "ID: " + itemID + " | " + itemName;
+    }
 }

@@ -1,3 +1,4 @@
-2018-02-11T16:36:32.944 : Student 001 CREATED.
-2018-02-11T16:37:00.933 : Student 001 REMOVED.
-2018-03-27T16:25:15.219 : Student 001 CREATED.
+2018-04-03T14:54:33.215 : createStudent: ID: 001 |Name: Joey Chewbaca |Cohort: JAVA
+2018-04-03T14:55:47.083 : createStudent: ID: 002 |Name: Jill Smith |Cohort: .NET
+2018-04-03T14:56:07.145 : removeStudent: 002
+2018-04-03T15:02:30.251 : createStudent: ID: 002 |Name: Jill Smith |Cohort: .Net

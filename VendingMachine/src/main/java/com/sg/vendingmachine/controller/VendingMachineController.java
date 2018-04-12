@@ -111,17 +111,9 @@ public class VendingMachineController {
             
             //compare user selection and amount of coins entered
             if(userSelection.equals(selectedItem.getItemID()) && selectedItem.getNumberOfItem() > 0){
-                if(userChange >= selectedItem.getItemCost()){
-                    view.displayItemRemoved(selectedItem);
-                    selectedItem = service.removeItem(selectedItem.getNumberOfItem(), selectedItem.getItemName(), selectedItem.getItemID());
-                    return userSelection;
-                } else {
-                    view.displayErrorMessage("You don't have enough money! You entered: " + userChange);
-                }
-            } else if(selectedItem.getNumberOfItem() == 0){
-                //if 0 of item in inventeroy
-                view.displayErrorMessage("There are no more " + selectedItem.getItemName() + " left.");
-                view.displayItemNotAvailable(selectedItem);
+                view.displayItemRemoved(selectedItem);
+                selectedItem = service.removeItem(selectedItem.getNumberOfItem(), selectedItem.getItemName(), selectedItem.getItemID());
+                return userSelection;
             } else if(!userSelection.equals(selectedItem.getItemID())){
                 // if user enters an ID that does not exist
                 view.displayUnknownCommandBanner();

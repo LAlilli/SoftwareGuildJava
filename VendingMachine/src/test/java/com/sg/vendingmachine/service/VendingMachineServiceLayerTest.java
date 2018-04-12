@@ -5,12 +5,6 @@
  */
 package com.sg.vendingmachine.service;
 
-import com.sg.vendingmachine.dao.VendingMachineAuditDao;
-import com.sg.vendingmachine.dao.VendingMachineAuditDaoStubImpl;
-import com.sg.vendingmachine.dao.VendingMachineBankRollDao;
-import com.sg.vendingmachine.dao.VendingMachineBankRollDaoImpl;
-import com.sg.vendingmachine.dao.VendingMachineInventoryDao;
-import com.sg.vendingmachine.dao.VendingMachineInventoryDaoStubImpl;
 import com.sg.vendingmachine.dto.VendingMachine;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,6 +12,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -28,11 +24,8 @@ public class VendingMachineServiceLayerTest {
     private VendingMachineServiceLayer service;
     
     public VendingMachineServiceLayerTest() {
-        VendingMachineInventoryDao dao = new VendingMachineInventoryDaoStubImpl();
-        VendingMachineAuditDao auditDao = new VendingMachineAuditDaoStubImpl();
-        VendingMachineBankRollDao bankrollDao = new VendingMachineBankRollDaoImpl();
-        
-        service = new VendingMachineServiceLayerImpl(dao, auditDao, bankrollDao);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("serviceLayer", VendingMachineServiceLayer.class);
     }
     
     @BeforeClass
@@ -56,7 +49,7 @@ public class VendingMachineServiceLayerTest {
      */
     @Test
     public void testGetAllItems() throws Exception {
-        assertEquals(1, service.getAllItems().size());
+        assertEquals(10, service.getAllItems().size());
     }
 
     /**
@@ -78,7 +71,7 @@ public class VendingMachineServiceLayerTest {
     @Test
     public void testGetItem() throws Exception {
         VendingMachine item = service.getItem("B5");
-        assertNull(item);
+        assertNotNull(item);
     }
     
     /**
@@ -86,7 +79,7 @@ public class VendingMachineServiceLayerTest {
      */
     @Test
     public void testRemoveItem() throws Exception {
-        VendingMachine item = service.removeItem(1, "Crackers", "B5");
+        VendingMachine item = service.removeItem(6, "Crackers", "B5");
         assertEquals(6, 6);
     }
 }
