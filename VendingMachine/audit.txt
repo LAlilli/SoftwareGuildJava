@@ -67,3 +67,15 @@
 2018-04-11T20:17:50.046 : selectItem: A2 | Exception thrown: InsufficientFundsException: You do not have enough money for that item.
 2018-04-11T20:17:55.068 : selectItem: B5 | Exception thrown: NoItemInventoryException: Item not available.
 2018-04-11T20:18:01.486 : removeItem: Snickers
+2018-04-15T19:28:04.121 : Snickers
+2018-04-15T19:28:04.152 : Snickers
+2018-04-15T19:29:03.507 : selectItem: A5 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-15T19:29:18.718 : selectItem: A2 | Exception thrown: InsufficientFundsException: You do not have enough money for that item.
+2018-04-15T19:35:28.884 : removeItem: Snickers
+2018-04-15T19:42:36.494 : Snickers
+2018-04-15T19:42:36.541 : Snickers
+2018-04-16T15:57:54.499 : Snickers
+2018-04-16T15:57:54.530 : Snickers
+2018-04-16T16:02:18.271 : selectItem: A5 | Exception thrown: NoItemInventoryException: Item not available.
+2018-04-16T16:02:25.885 : selectItem: A2 | Exception thrown: InsufficientFundsException: You do not have enough money for that item.
+2018-04-16T16:02:54.605 : removeItem: Snickers

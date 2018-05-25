@@ -6,15 +6,12 @@
 package com.sg.vendingmachine.dao;
 
 import com.sg.vendingmachine.dto.VendingMachine;
-import java.time.LocalDate;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  *

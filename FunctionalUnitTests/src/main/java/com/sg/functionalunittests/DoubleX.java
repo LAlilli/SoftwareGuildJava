@@ -20,10 +20,6 @@ public class DoubleX {
     public boolean doubleX(String str) {
         if (str.contains("xx") && str.indexOf("x") == 1){
             return true;
-        } else if (str.contains("xxx")){
-            return true;
-        } else if (str.contains("xx")){
-            return true;
         } else {
             return false;
         }

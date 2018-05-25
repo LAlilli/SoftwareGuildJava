@@ -1,10 +1,10 @@
-A1::Snickers::1.99::10
-B2::Fruit Snack::0.8::15
-A2::Cliff Bar::2.99::16
-B3::Hot Pockets::2.5::20
-A3::Ruffles::1.99::11
-B4::Skittles::1.05::9
+A1::Snickers::1.99::6
+B2::Fruit Snack::0.8::3
+A2::Cliff Bar::2.99::4
+B3::Hot Pockets::2.5::8
+A3::Ruffles::1.99::0
+B4::Skittles::1.05::0
 A4::Roll-up::0.99::8
-B5::Crackers::1.99::5
+B5::Crackers::1.99::6
 A5::Milky Way::1.89::0
-B1::Doritos::1.5::3
+B1::Doritos::1.5::7

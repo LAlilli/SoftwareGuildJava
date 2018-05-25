@@ -5,8 +5,6 @@
  */
 package com.sg.vendingmachine.dao;
 
-import com.sg.vendingmachine.dto.BankRoll;
-import com.sg.vendingmachine.dto.VendingMachine;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -39,6 +37,8 @@ public class VendingMachineBankRollDaoTest {
     
     @After
     public void tearDown() {
+        dao = null;
+        assertNull(dao);
     }
 
     /**

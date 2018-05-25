@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.functionalunittests;
+package com.sg.flooringmastery.dao;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -16,11 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author LA-San
  */
-public class DoubleXTest {
+public class TaxDaoTest {
     
-    private DoubleX xx = new DoubleX();
-    
-    public DoubleXTest() {
+    public TaxDaoTest() {
     }
     
     @BeforeClass
@@ -40,17 +38,10 @@ public class DoubleXTest {
     }
 
     /**
-     * Test of doubleX method, of class DoubleX.
+     * Test of loadTaxData method, of class TaxDao.
      */
     @Test
-    public void testTrueDoubleX1() {       
-        String expectedResult = "axxbb";
-        assertEquals(expectedResult, xx.doubleX("xx"), true);
-    }
-    
-    @Test
-    public void testFalseDoubleX() {
-        String expectedResult = "axaxxax";
-        assertNotEquals(expectedResult, xx.doubleX("xx"), false);
-    }
+    public void testLoadTaxData() {
+
+    }  
 }

@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.functionalunittests;
+package com.sg.flooringmastery.dao;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author LA-San
  */
-public class DoubleXTest {
+public class ProductDaoTest {
     
-    private DoubleX xx = new DoubleX();
+    private ProductDao dao = new ProductDaoFileImpl();
     
-    public DoubleXTest() {
+    public ProductDaoTest() {
     }
     
     @BeforeClass
@@ -37,20 +37,15 @@ public class DoubleXTest {
     
     @After
     public void tearDown() {
+        dao = null;
+        assertNull(dao);
     }
 
     /**
-     * Test of doubleX method, of class DoubleX.
+     * Test of loadProductData method, of class ProductDao.
      */
     @Test
-    public void testTrueDoubleX1() {       
-        String expectedResult = "axxbb";
-        assertEquals(expectedResult, xx.doubleX("xx"), true);
-    }
-    
-    @Test
-    public void testFalseDoubleX() {
-        String expectedResult = "axaxxax";
-        assertNotEquals(expectedResult, xx.doubleX("xx"), false);
+    public void testLoadProductData() {
+        
     }
 }

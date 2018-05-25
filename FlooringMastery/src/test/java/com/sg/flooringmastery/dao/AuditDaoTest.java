@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sg.vendingmachine.dao;
+package com.sg.flooringmastery.dao;
 
-import static com.sg.vendingmachine.dao.VendingMachineAuditDaoFileImpl.AUDIT_FILE;
+import static com.sg.flooringmastery.dao.AuditDaoFileImpl.AUDIT_FILE;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
@@ -20,11 +20,11 @@ import static org.junit.Assert.*;
  *
  * @author LA-San
  */
-public class VendingMachineAuditDaoTest {
+public class AuditDaoTest {
     
-    private VendingMachineAuditDao dao = new VendingMachineAuditDaoFileImpl();
+    private AuditDao dao = new AuditDaoFileImpl();
     
-    public VendingMachineAuditDaoTest() {
+    public AuditDaoTest() {
     }
     
     @BeforeClass
@@ -44,11 +44,11 @@ public class VendingMachineAuditDaoTest {
     }
 
     /**
-     * Test of writeAuditEntry method, of class VendingMachineAuditDao.
+     * Test of writeAuditEntry method, of class AuditDao.
      */
     @Test
     public void testWriteAuditEntry() throws Exception {
-        String entry = "Snickers";
+        String entry = "Joey";
         
         PrintWriter out;
         out = new PrintWriter(new FileWriter(AUDIT_FILE, true));
@@ -60,5 +60,5 @@ public class VendingMachineAuditDaoTest {
         dao.writeAuditEntry(entry);
         
         assertEquals(entry, entry);
-    }    
+    }
 }
