@@ -12,6 +12,8 @@ import com.sg.flooringmastery.dao.NoSuchStateException;
 import com.sg.flooringmastery.dao.OrderDao;
 import com.sg.flooringmastery.dto.Order;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,24 +44,19 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
     public void addOrder(Order order) throws FlooringMasteryPersistenceException, FlooringMasteryDataValidationException { 
         validateOrderData(order);
         daoOrder.addOrder(order.getOrderNum(), order);
-        
-        auditDao.writeAuditEntry("Order " + order.getOrderNum() + " CREATED.");
     }
 
     @Override
     public void editOrder(int orderNum, Order order) throws FlooringMasteryDataValidationException, FlooringMasteryPersistenceException {
         validateOrderData(order);
 
+        daoOrder.removeOrder(orderNum);
         daoOrder.editOrder(order.getOrderNum(), order);
-
-        auditDao.writeAuditEntry("Order " + order.getOrderNum() + " EDITED.");
     }
 
     @Override
     public Order removeOrder(int orderNum) throws FlooringMasteryPersistenceException {
         daoOrder.removeOrder(orderNum);
-        // Write to audit log
-        auditDao.writeAuditEntry("Order " + orderNum + " REMOVED.");
         return daoOrder.removeOrder(orderNum);
     }
 
@@ -73,6 +70,7 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         return daoOrder.getAllOrders();
     }
 
+    //validate order data/ user info provided
     @Override
     public void validateOrderData(Order order) throws FlooringMasteryDataValidationException {
         if (order.getOrderNum() == 0
@@ -89,6 +87,30 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         }
     }
 
+    //formatter for date
+    public String printFormat(LocalDate date)
+    {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        String tempdate = date.format(dateFormat);
+        return tempdate.replaceAll("-", "");
+    }
+    
+    //delete content for removing order
+    @Override
+    public void removeOrderContent(Order order) throws FlooringMasteryPersistenceException, FileNotFoundException {
+        daoOrder.getOrder(order.getOrderNum(), order.getDate());
+        
+        String fileDate = printFormat(order.getDate());
+        
+        try {
+            FileOutputStream writer = new FileOutputStream("C:\\repos\\lindsay-lilli-individual-work\\FlooringMastery\\orders\\Orders_" + fileDate + ".txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("Exception Occurred:");
+	    e.printStackTrace();
+        }
+    }
+    
+    //save current work order
     @Override
     public void saveCurrentWork(Order order) throws FlooringMasteryPersistenceException {
         PrintWriter out;
@@ -97,28 +119,26 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         
         String fileDate = printFormat(order.getDate());
         try {
-	     File file = new File("Orders_" + fileDate + ".txt");
+	     File file = new File("C:\\repos\\lindsay-lilli-individual-work\\FlooringMastery\\orders\\Orders_" + fileDate + ".txt");
              out = new PrintWriter(new FileWriter(file, true));
              
-            List<Order> orderList = this.getAllOrders();
-                for (Order currentOrder : orderList) {
                 // write the order object to the file
-                out.println(currentOrder.getOrderNum() + DELIMITER
-                        + currentOrder.getCustomerName() + DELIMITER 
-                        + currentOrder.getState() + DELIMITER
-                        + currentOrder.getStateTax() + DELIMITER
-                        + currentOrder.getProductType() + DELIMITER
-                        + currentOrder.getArea() + DELIMITER
-                        + currentOrder.getCostPerSqFoot() + DELIMITER
-                        + currentOrder.getLaborCostPerSqFoot() + DELIMITER
-                        + currentOrder.getMaterialCost() + DELIMITER
-                        + currentOrder.getLaborCost() + DELIMITER
-                        + currentOrder.getTax() + DELIMITER
-                        + currentOrder.getTotal() + DELIMITER
-                        + currentOrder.getDate().toString());
+                out.println(order.getOrderNum() + DELIMITER
+                        + order.getCustomerName() + DELIMITER 
+                        + order.getState() + DELIMITER
+                        + order.getStateTax() + DELIMITER
+                        + order.getProductType() + DELIMITER
+                        + order.getArea() + DELIMITER
+                        + order.getCostPerSqFoot() + DELIMITER
+                        + order.getLaborCostPerSqFoot() + DELIMITER
+                        + order.getMaterialCost() + DELIMITER
+                        + order.getLaborCost() + DELIMITER
+                        + order.getTax() + DELIMITER
+                        + order.getTotal() + DELIMITER
+                        + order.getDate().toString());
                 // force PrintWriter to write line to the file
                 out.flush();
-            }
+            //}
                 
             // Clean up
             out.close();
@@ -135,14 +155,8 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
 	        e.printStackTrace();
 	  }
     }
-
-    public String printFormat(LocalDate date)
-    {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        String tempdate = date.format(dateFormat);
-        return tempdate.replaceAll("-", "");
-    }
     
+    //generate order number
     @Override
     public int generateOrderNumber(Order order) throws FlooringMasteryPersistenceException {
         daoOrder.generateOrderNum(order);
@@ -150,6 +164,7 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         return order.getOrderNum();
     }
     
+    //calculate total tax
     @Override
     public BigDecimal calculateTax(Order order) throws FlooringMasteryPersistenceException, NoSuchStateException {
         BigDecimal stateTax = taxService.validateUserTaxData(order.getState()); 
@@ -159,6 +174,7 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         return totalTax;
     }
     
+    //calculate total labor cost
     @Override
     public BigDecimal calculateLaborCost(Order order) throws FlooringMasteryPersistenceException, NoSuchProductException {
         BigDecimal laborCostPerSqFoot = productService.setLaborCost(order.getProductType()); 
@@ -168,6 +184,7 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         return totalLaborCost;
     }
 
+    //calculate total material cost
     @Override
     public BigDecimal calculateMaterialCost(Order order) throws FlooringMasteryPersistenceException, NoSuchProductException {
         BigDecimal materialCostPerSqFoot = productService.setMaterialCost(order.getProductType()); 
@@ -177,6 +194,7 @@ public class OrderServiceLayerImpl implements OrderServiceLayer {
         return totalMaterialCost;
     }
 
+    //calculate total
     @Override
     public BigDecimal calculateTotal(Order order) throws FlooringMasteryPersistenceException {
         

@@ -14,6 +14,7 @@ import com.sg.flooringmastery.service.OrderServiceLayer;
 import com.sg.flooringmastery.service.ProductServiceLayer;
 import com.sg.flooringmastery.service.TaxServiceLayer;
 import com.sg.flooringmastery.ui.FlooringMasteryView;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -35,60 +36,99 @@ public class FlooringMasteryController {
         this.productService = productService;
     }
 
-    public void run() throws FlooringMasteryPersistenceException, FlooringMasteryDataValidationException {
+    public void run() throws FlooringMasteryPersistenceException, FlooringMasteryDataValidationException, FileNotFoundException {
         boolean keepGoing = true;
         int menuSelection = 0;
-        int orderNum = 0;
-        LocalDate date = LocalDate.now();
+        int modeSelection = 0;
+        int trainingMenuSelection = 0;
         
-        try {
-        while (keepGoing) {
-            menuSelection = getMenuSelection();
+        modeSelection = getModeSelection();
+        if(modeSelection == 1){
+            view.displayProductionModeBanner();
+            try {
+            while (keepGoing) {
+                menuSelection = getMenuSelection();
 
-            switch (menuSelection) {
-                case 1:
-                    listOrders();
-                    break;
-                case 2:
-                    try {
-                    addOrder();
-                    } catch (NoSuchStateException e) {
-                        view.displayErrorMessage(e.getMessage());
-                    } catch (NoSuchProductException e) {
-                        view.displayErrorMessage(e.getMessage());
+                switch (menuSelection) {
+                    case 1:
+                        listOrders();
+                        break;
+                    case 2:
+                        try {
+                        addOrder();
+                        } catch (NoSuchStateException e) {
+                            view.displayErrorMessage(e.getMessage());
+                        } catch (NoSuchProductException e) {
+                            view.displayErrorMessage(e.getMessage());
+                        }
+                        break;
+                    case 3:
+                        try {
+                        editOrder();
+                        } catch (NoSuchStateException e) {
+                            view.displayErrorMessage(e.getMessage());
+                        } catch (NoSuchProductException e) {
+                            view.displayErrorMessage(e.getMessage());
+                        }
+                        break;
+                    case 4:
+                        removeOrder();
+                        break;
+                    case 5:
+                        viewOrder();
+                        break;
+                    case 6:
+                        saveCurrentWork();
+                        break;
+                    case 7:
+                        keepGoing = false;
+                        break;
+                    default:
+                        unknownCommand();
                     }
-                    break;
-                case 3:
-                    try {
-                    editOrder();
-                    } catch (NoSuchStateException e) {
-                        view.displayErrorMessage(e.getMessage());
-                    } catch (NoSuchProductException e) {
-                        view.displayErrorMessage(e.getMessage());
-                    }
-                    break;
-                case 4:
-                    removeOrder();
-                    break;
-                case 5:
-                    saveCurrentWork(orderNum, date);
-                    break;
-                case 6:
-                    keepGoing = false;
-                    break;
-                default:
-                    unknownCommand();
+                }
+            exitMessage();
+        } catch (FlooringMasteryPersistenceException e) {
+                view.displayErrorMessage(e.getMessage());
             }
-
-        }
-        exitMessage();
-    } catch (FlooringMasteryPersistenceException e) {
-            view.displayErrorMessage(e.getMessage());
+        } else if(modeSelection == 2){
+            view.displayTrainingModeBanner();
+            
+            try {
+            while (keepGoing) {
+                trainingMenuSelection = getTrainingMenuSelection();
+                switch (trainingMenuSelection) {
+                    case 1:
+                        listOrders();
+                        break;
+                    case 2:
+                        viewOrder();
+                        break;
+                    case 3:
+                        keepGoing = false;
+                        break;
+                    default:
+                        unknownCommand();
+                    }
+                }
+                exitMessage();
+            } catch (FlooringMasteryPersistenceException e) {
+                    view.displayErrorMessage(e.getMessage());
+            }
         }
     }
 
+    //menu selections
     private int getMenuSelection() {
         return view.printMenuAndGetSelection();
+    }
+    
+    private int getModeSelection(){
+        return view.printModeAndSelection();
+    }
+    
+    private int getTrainingMenuSelection(){
+        return view.printTrainingMenuAndSelection();
     }
     
     //add order
@@ -124,7 +164,7 @@ public class FlooringMasteryController {
         BigDecimal total = service.calculateTotal(newOrder);
         newOrder.setTotal(total);
         
-        //set order number
+        //generate order number
         int orderNum = service.generateOrderNumber(newOrder);
         newOrder.setOrderNum(orderNum);
         
@@ -138,9 +178,11 @@ public class FlooringMasteryController {
             service.addOrder(newOrder);
             view.displayAddSuccessBanner();
             service.saveCurrentWork(newOrder);
-            view.displaySaveWorkSuccessBanner();
         } else {
             view.displayNoSavedWork();
+            
+            //save to hashmap if want to save later
+            service.addOrder(newOrder);
         }
     }
     
@@ -161,7 +203,7 @@ public class FlooringMasteryController {
     }
     
     //remove order
-    private void removeOrder() throws FlooringMasteryPersistenceException {
+    private void removeOrder() throws FlooringMasteryPersistenceException, FileNotFoundException {
         
         //retrieve order that user would like to remove
         view.displayRemoveOrderBanner();
@@ -175,17 +217,15 @@ public class FlooringMasteryController {
         if(response.equals("y")){
             view.displaySaveWorkBanner();
             service.removeOrder(order.getOrderNum());
-            service.saveCurrentWork(order);
-            view.displaySaveWorkSuccessBanner();
+            service.removeOrderContent(order);
+            view.displayRemoveSuccessBanner();
         } else {
             view.displayNoSavedWork();
         }
-        
-        view.displayRemoveSuccessBanner();
     }
    
     //edit order
-    private void editOrder() throws FlooringMasteryPersistenceException, FlooringMasteryDataValidationException, NoSuchStateException, NoSuchProductException {
+    private void editOrder() throws FlooringMasteryPersistenceException, FlooringMasteryDataValidationException, NoSuchStateException, NoSuchProductException, FileNotFoundException {
         
         //retrieve order that user would like to edit
         view.displayEditOrderBanner();
@@ -226,20 +266,25 @@ public class FlooringMasteryController {
         if(response.equals("y")){
             view.displaySaveWorkBanner();
             service.editOrder(order.getOrderNum(), order);
+            service.removeOrderContent(order);
             service.saveCurrentWork(order);
-            view.displaySaveWorkSuccessBanner();
+            view.displayEditSuccessBanner();
         } else {
             view.displayNoSavedWork();
-        }
-        
-        view.displayEditSuccessBanner();
+            
+            //update hashmap in case want to save
+            service.editOrder(order.getOrderNum(), order);
+        } 
     }
     
     //save current work
-    private void saveCurrentWork(int orderNum, LocalDate date) throws FlooringMasteryPersistenceException {
-        Order order = service.getOrder(orderNum, date);
+    private void saveCurrentWork() throws FlooringMasteryPersistenceException {
+        List<Order> orderList = service.getAllOrders();
         view.displaySaveWorkBanner();
-        service.saveCurrentWork(order);
+        for(int i = 0; i < orderList.size(); ++i)
+        {
+            service.saveCurrentWork(orderList.get(i));
+        }
         view.displaySaveWorkSuccessBanner();
     }
         

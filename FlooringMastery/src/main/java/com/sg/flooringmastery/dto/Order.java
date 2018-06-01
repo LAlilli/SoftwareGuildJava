@@ -15,14 +15,14 @@ import java.util.Objects;
  */
 public class Order {
 
-    private int orderNum; //read only
+    private int orderNum; 
     private String customerName;
     private BigDecimal area;
-    private BigDecimal materialCost; //read only - calculated
-    private BigDecimal laborCost; //read only - calculated
-    private BigDecimal tax; //read only - calculated
-    private BigDecimal total; //read only - calculated
-    private LocalDate date; //user enters, used only for file name/searching
+    private BigDecimal materialCost; 
+    private BigDecimal laborCost;
+    private BigDecimal tax; 
+    private BigDecimal total; 
+    private LocalDate date; 
     
     public Order(int orderNum) {
         this.orderNum = orderNum;
@@ -204,5 +204,10 @@ public class Order {
             return false;
         }
         return true;
+    }
+    
+    @Override
+    public String toString() {
+        return "Order Number: " + orderNum + " |Customer Name: " + customerName + " |Date: " + date;
     }
 }

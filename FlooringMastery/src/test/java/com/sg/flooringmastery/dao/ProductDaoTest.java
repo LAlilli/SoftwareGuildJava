@@ -5,12 +5,14 @@
  */
 package com.sg.flooringmastery.dao;
 
+import com.sg.flooringmastery.dto.Product;
+import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
-import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -32,20 +34,48 @@ public class ProductDaoTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception{
+       dao.loadProductData();
     }
     
     @After
     public void tearDown() {
-        dao = null;
-        assertNull(dao);
+
     }
 
-    /**
-     * Test of loadProductData method, of class ProductDao.
-     */
     @Test
-    public void testLoadProductData() {
+    public void testValidateUserProductData() throws Exception {
+        Product onlyProductData = new Product();
+        onlyProductData.setProductType("Wood");
+        onlyProductData.setCostPerSqFoot(new BigDecimal(2.25));
+        onlyProductData.setLaborCostPerSqFoot(new BigDecimal(2.10));
         
+        dao.validateUserProductData(onlyProductData.getProductType());
+        
+        assertEquals("Wood", onlyProductData.getProductType());
+    }
+    
+    @Test
+    public void testReadMaterialCost() throws Exception {
+        Product onlyProductData = new Product();
+        onlyProductData.setProductType("Wood");
+        onlyProductData.setCostPerSqFoot(new BigDecimal(5.15));
+        onlyProductData.setLaborCostPerSqFoot(new BigDecimal(4.75));
+        
+        dao.readMaterialCostByProductType(onlyProductData.getProductType());
+
+        assertEquals(5.15, onlyProductData.getCostPerSqFoot().doubleValue(),2);
+    }
+    
+    @Test
+    public void testReadLaborCost() throws Exception {
+        Product onlyProductData = new Product();
+        onlyProductData.setProductType("Wood");
+        onlyProductData.setCostPerSqFoot(new BigDecimal(5.15));
+        onlyProductData.setLaborCostPerSqFoot(new BigDecimal(4.75));
+        
+        dao.readLaborCostByProductType(onlyProductData.getProductType());
+        
+        assertEquals(4.75, onlyProductData.getLaborCostPerSqFoot().doubleValue(), 2);
     }
 }

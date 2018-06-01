@@ -51,7 +51,7 @@ public class ProductDaoFileImpl implements ProductDao {
 
             
             Product product = new Product(currentTokens[0]);
-            // Set the remaining vlaues on tax manually
+            // Set the remaining vlaues on product manually
             product.setCostPerSqFoot(new BigDecimal(currentTokens[1]));
             product.setLaborCostPerSqFoot(new BigDecimal(currentTokens[2]));
 

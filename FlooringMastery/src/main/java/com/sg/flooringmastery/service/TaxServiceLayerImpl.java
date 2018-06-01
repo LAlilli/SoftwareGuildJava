@@ -36,7 +36,6 @@ public class TaxServiceLayerImpl implements TaxServiceLayer {
         boolean correctState = taxDao.validateUserTaxData(state);
         if(!correctState){
             throw new NoSuchStateException("NoSuchStateException: This state is not available.");
-            //return null;
         } else {
             return taxDao.setStateTax(state);
         }

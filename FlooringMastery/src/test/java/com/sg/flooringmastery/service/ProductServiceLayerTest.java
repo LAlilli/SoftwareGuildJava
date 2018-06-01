@@ -5,8 +5,6 @@
  */
 package com.sg.flooringmastery.service;
 
-import com.sg.flooringmastery.dao.ProductDao;
-import com.sg.flooringmastery.dao.ProductDaoFileImplStub;
 import com.sg.flooringmastery.dto.Product;
 import java.math.BigDecimal;
 import org.junit.After;
@@ -14,6 +12,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -24,14 +25,13 @@ public class ProductServiceLayerTest {
     private ProductServiceLayer service;
     
     public ProductServiceLayerTest() {
-        ProductDao dao = new ProductDaoFileImplStub();
-        
-        service = new ProductServiceLayerImpl(dao);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("productServiceLayer", ProductServiceLayer.class);
     }
     
     @BeforeClass
     public static void setUpClass() {
-        Product product = new Product("Wood");
+        
     }
     
     @AfterClass
@@ -47,7 +47,7 @@ public class ProductServiceLayerTest {
     }
 
     @Test
-    public void testSetMaterialCosta() throws Exception {
+    public void testSetMaterialCost() throws Exception {
         BigDecimal cost = new BigDecimal("1.25");
         BigDecimal laborCost = new BigDecimal("1.50");
         
@@ -56,6 +56,8 @@ public class ProductServiceLayerTest {
         product.setLaborCostPerSqFoot(laborCost);
         
         service.setMaterialCost(product.getProductType());
+        
+        assertEquals(1.25, product.getCostPerSqFoot().doubleValue(), 2);
     }
     
     @Test
@@ -68,5 +70,7 @@ public class ProductServiceLayerTest {
         product.setLaborCostPerSqFoot(laborCost);
         
         service.setLaborCost(product.getProductType());
+        
+        assertEquals(1.5, product.getLaborCostPerSqFoot().doubleValue(), 2);
     }
 }

@@ -16,6 +16,13 @@ public class ProductDaoFileImplStub implements ProductDao {
 
     Product onlyProductData;
     
+    public ProductDaoFileImplStub() {
+        onlyProductData = new Product();
+        onlyProductData.setProductType("Wood");
+        onlyProductData.setCostPerSqFoot(new BigDecimal(2.25));
+        onlyProductData.setLaborCostPerSqFoot(new BigDecimal(2.10));
+    }
+    
     @Override
     public void loadProductData() {
         
@@ -23,21 +30,20 @@ public class ProductDaoFileImplStub implements ProductDao {
 
     @Override
     public boolean validateUserProductData(String productType) {
-        //update to real data
-        return true;
+        if(onlyProductData.getProductType().equals(productType)){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public BigDecimal readMaterialCostByProductType(String productType) throws FlooringMasteryPersistenceException {
-        BigDecimal materialCost = new BigDecimal(0);
-        
-        return materialCost;
+        return onlyProductData.getCostPerSqFoot();
     }
 
     @Override
     public BigDecimal readLaborCostByProductType(String productType) throws FlooringMasteryPersistenceException {
-        BigDecimal laborCost = new BigDecimal(0);
-        
-        return laborCost;
+        return onlyProductData.getLaborCostPerSqFoot();
     }
 }

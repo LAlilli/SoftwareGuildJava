@@ -9,6 +9,7 @@ import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 import com.sg.flooringmastery.dao.NoSuchProductException;
 import com.sg.flooringmastery.dao.NoSuchStateException;
 import com.sg.flooringmastery.dto.Order;
+import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -41,4 +42,6 @@ public interface OrderServiceLayer {
     BigDecimal calculateMaterialCost(Order order) throws FlooringMasteryPersistenceException, NoSuchProductException;
 
     BigDecimal calculateTotal(Order order) throws FlooringMasteryPersistenceException;
+    
+    void removeOrderContent(Order order) throws FlooringMasteryPersistenceException, FileNotFoundException;
 }

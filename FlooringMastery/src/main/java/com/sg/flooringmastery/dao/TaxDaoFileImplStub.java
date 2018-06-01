@@ -15,6 +15,12 @@ import java.math.BigDecimal;
 public class TaxDaoFileImplStub implements TaxDao {
     
     Tax onlyTaxData;
+    
+    public TaxDaoFileImplStub(){
+        onlyTaxData = new Tax();
+        onlyTaxData.setState("OH");
+        onlyTaxData.setStateTax(new BigDecimal(6.25));
+    }
 
     @Override
     public void loadTaxData() {
@@ -22,14 +28,19 @@ public class TaxDaoFileImplStub implements TaxDao {
 
     @Override
     public boolean validateUserTaxData(String state) throws FlooringMasteryPersistenceException {
-        //update with correct info
-        return true;
+        if(onlyTaxData.getState() == state){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public BigDecimal setStateTax(String state) throws FlooringMasteryPersistenceException {
-        BigDecimal stateTax = new BigDecimal(2.0);
-        
-        return stateTax;
+        if(onlyTaxData.getState() == state){
+            return onlyTaxData.getStateTax();
+        } else {
+            return null;
+        }
     }
 }

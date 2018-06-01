@@ -23,19 +23,48 @@ public class FlooringMasteryView {
     public FlooringMasteryView(UserIO io){
         this.io = io;
     }
-
+    
+    //menu selections
     public int printMenuAndGetSelection() {
         io.print("Main Menu");
         io.print("1. Display Orders");
         io.print("2. Add an Order");
         io.print("3. Edit an Order");
         io.print("4. Remove an Order");
-        io.print("5. Save Current Work");
-        io.print("6. Exit");
+        io.print("5. View an Order");
+        io.print("6. Save Current Work");
+        io.print("7. Exit");
 
-        return io.readInt("Please select from the above choices.", 1, 6);
+        return io.readInt("Please select from the above choices.", 1, 7);
     }
     
+    public int printModeAndSelection() {
+        io.print("Select Production or Training Mode");
+        io.print("1. Production");
+        io.print("2. Training");
+
+        return io.readInt("Please select from the above choices.", 1, 2);
+    }
+    
+    public int printTrainingMenuAndSelection() {
+        io.print("Training Main Menu");
+        io.print("1. Display Orders");
+        io.print("2. Display an Order");
+        io.print("3. Exit");
+
+        return io.readInt("Please select from the above choices.", 1, 3);
+    }
+    
+    //mode banners
+    public void displayTrainingModeBanner() {
+        io.print("=== Training Mode ===");
+    }
+    
+    public void displayProductionModeBanner() {
+        io.print("=== Production Mode ===");
+    }
+    
+    //formatter for date
     public LocalDate dateInput(String date){        
             if(date.length() == 0)
             {
@@ -54,14 +83,31 @@ public class FlooringMasteryView {
     
     //add order
     public Order getNewOrderInfo() {
-        //int orderNum = io.readInt("Please enter order number"); //-- this will be read only
         Order currentOrder = new Order();
+        BigDecimal area = new BigDecimal(0);
         
         String customerName = io.readString("Please enter name of customer");
+        if(customerName.equals("")){
+            customerName = io.readString("Please enter name of customer to proceed");
+        }
         String state = io.readString("Please enter state");
+        if(state.equals("")){
+            state = io.readString("Please enter state to proceed");
+        }
         String productType = io.readString("Please enter the type of product ordered");
-        BigDecimal area = io.readBigDecimal("Please enter area");
+        if(productType.equals("")){
+            productType = io.readString("Please enter the type of product ordered to proceed");
+        }
+        String areaInput = io.readString("Please enter area");
+        if(areaInput.equals("") || areaInput.equals("0")){
+            area = io.readBigDecimal("Please enter area to proceed");
+        } else {
+            area = new BigDecimal(areaInput);
+        }
         LocalDate date = dateInput(io.readString("Please enter date of order (ex. 12-20-2016)"));
+        if(date == null){
+            date = dateInput(io.readString("Please enter date of order (ex. 12-20-2016) to proceed"));
+        }
         
         int orderNum = currentOrder.getOrderNum();
         
@@ -107,12 +153,18 @@ public class FlooringMasteryView {
     }
     
     public int getOrderNumChoice() {
-        return io.readInt("Please enter the order number.");
+        int orderNum = io.readInt("Please enter the order number.");
+        if(orderNum == 0){
+            orderNum = io.readInt("Please enter the order number to proceed.");
+        }
+        return orderNum;
     }
     
     public LocalDate getOrderDate(){
         LocalDate date = dateInput(io.readString("Please enter date of order (ex. 12-20-2016)"));
-        
+        if(date == null){
+            date = dateInput(io.readString("Please enter date of order (ex. 12-20-2016) to proceed"));
+        }
         return date;
     }
     
@@ -173,8 +225,9 @@ public class FlooringMasteryView {
     
     //edit order    
     public Order editOrder(Order order){
+        io.print("Hit enter to skip to the next line.");
         int orderNum = order.getOrderNum();
-        LocalDate dateInput = order.getDate();
+        LocalDate dateUserInput = order.getDate();
         String customerName = io.readString("Enter customer name " + "(" + order.getCustomerName() + "):");
         String state = io.readString("Enter state " + "(" + order.getState() + "):");
         String productType = io.readString("Enter product type " + "(" + order.getProductType() + "):");
@@ -225,7 +278,9 @@ public class FlooringMasteryView {
     public String displaySaveWorkResponse(){
         String response = io.readString("Please enter y/n to save current work."
                 + " If you select no, you will be returned to the main menu.");
-        
+        if(response.equals("")){
+            response = io.readString("Please enter y/n to proceed and return to the main menu.");
+        }
         return response;
     }
     

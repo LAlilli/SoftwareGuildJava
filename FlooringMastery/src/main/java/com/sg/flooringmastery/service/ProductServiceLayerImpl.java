@@ -36,11 +36,9 @@ public class ProductServiceLayerImpl implements ProductServiceLayer {
         boolean correctProductType = productDao.validateUserProductData(productType);
         if(!correctProductType){
             throw new NoSuchProductException("NoSuchProductException: This product is not available.");
-            //return null;
         } else {
             return productDao.readMaterialCostByProductType(productType);
         }
-        //custom exception
     }
     
     @Override
@@ -48,10 +46,8 @@ public class ProductServiceLayerImpl implements ProductServiceLayer {
         boolean correctProductType = productDao.validateUserProductData(productType);
         if(!correctProductType){
             throw new NoSuchProductException("NoSuchProductException: This product is not available.");
-            //return null;
         } else {
             return productDao.readLaborCostByProductType(productType);
         }
-        //custom exception
     }
 }

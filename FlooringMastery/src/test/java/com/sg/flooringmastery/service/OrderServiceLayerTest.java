@@ -5,14 +5,8 @@
  */
 package com.sg.flooringmastery.service;
 
-import com.sg.flooringmastery.dao.AuditDao;
-import com.sg.flooringmastery.dao.AuditDaoFileImplStub;
 import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
-import com.sg.flooringmastery.dao.OrderDao;
-import com.sg.flooringmastery.dao.OrderDaoFileImplStub;
 import com.sg.flooringmastery.dto.Order;
-import com.sg.flooringmastery.service.TaxServiceLayer;
-import com.sg.flooringmastery.service.ProductServiceLayer;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,6 +18,8 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -34,17 +30,13 @@ public class OrderServiceLayerTest {
     private OrderServiceLayer service;
     
     public OrderServiceLayerTest() {
-        OrderDao dao = new OrderDaoFileImplStub();
-        AuditDao auditDao = new AuditDaoFileImplStub();
-        TaxServiceLayer taxService = new TaxServiceLayerImpl();
-        ProductServiceLayer productService = new ProductServiceLayerImpl();
-        
-        service = new OrderServiceLayerImpl(dao, auditDao, taxService, productService);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("orderServiceLayer", OrderServiceLayer.class);
     }
 
     @BeforeClass
     public static void setUpClass() {
-        Order order = new Order(1);
+
     }
     
     @AfterClass
@@ -80,6 +72,8 @@ public class OrderServiceLayerTest {
         order.setDate(LocalDate.parse("12/15/2015", df));
         
         service.addOrder(order);
+        
+        assertEquals(2, order.getOrderNum());
     }
 
     /**
@@ -103,6 +97,8 @@ public class OrderServiceLayerTest {
         order.setDate(LocalDate.parse("12/15/2015", df));
         
         service.editOrder(order.getOrderNum(), order);
+        
+        assertEquals(2, order.getOrderNum());
     }
 
     /**
@@ -159,14 +155,6 @@ public class OrderServiceLayerTest {
         } catch (FlooringMasteryDataValidationException e){
             return;
         }
-    }
-
-    /**
-     * Test of saveCurrentWork method, of class OrderServiceLayer.
-     */
-    @Test
-    public void testSaveCurrentWork() throws Exception {
-
     }
 
     /**

@@ -5,9 +5,6 @@
  */
 package com.sg.flooringmastery.service;
 
-import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
-import com.sg.flooringmastery.dao.TaxDao;
-import com.sg.flooringmastery.dao.TaxDaoFileImplStub;
 import com.sg.flooringmastery.dto.Tax;
 import java.math.BigDecimal;
 import org.junit.After;
@@ -15,6 +12,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -25,14 +25,13 @@ public class TaxServiceLayerTest {
     private TaxServiceLayer service;
     
     public TaxServiceLayerTest() {
-        TaxDao dao = new TaxDaoFileImplStub();
-        
-        service = new TaxServiceLayerImpl(dao);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        service = ctx.getBean("taxServiceLayer", TaxServiceLayer.class);
     }
     
     @BeforeClass
     public static void setUpClass() {
-        Tax tax = new Tax("OH");
+        
     }
     
     @AfterClass
@@ -51,12 +50,14 @@ public class TaxServiceLayerTest {
      * Test of validateUserTaxData method, of class TaxServiceLayer.
      */
     @Test
-    public void testValidateUserTaxData() throws FlooringMasteryPersistenceException {
+    public void testValidateUserTaxData() throws Exception {
         BigDecimal stateTax = new BigDecimal("0.25");
         
         Tax tax = new Tax("OH");
         tax.setStateTax(stateTax);
 
         service.validateUserTaxData(tax.getState());
+        
+        assertEquals("OH", tax.getState());
     }
 }

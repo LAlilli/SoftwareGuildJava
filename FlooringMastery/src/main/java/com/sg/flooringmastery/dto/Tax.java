@@ -13,8 +13,8 @@ import java.util.Objects;
  * @author LA-San
  */
 public class Tax {
-    private String state; //user enters, compare to file
-    private BigDecimal stateTax; //read only based on state user enters
+    private String state; 
+    private BigDecimal stateTax; 
 
     public Tax(String state) {
         this.state = state;

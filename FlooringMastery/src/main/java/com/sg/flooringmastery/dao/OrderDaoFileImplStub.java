@@ -21,6 +21,7 @@ public class OrderDaoFileImplStub implements OrderDao {
     List<Order> allOrders = new ArrayList<>();
     
     public OrderDaoFileImplStub(){
+        onlyOrder = new Order();
         DateTimeFormatter df = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         onlyOrder = new Order(1);
         onlyOrder.setCustomerName("Joey");
@@ -80,7 +81,6 @@ public class OrderDaoFileImplStub implements OrderDao {
         }
     }
 
-    //for testing mode
     @Override
     public void loadOrderData() {
 

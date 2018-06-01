@@ -13,9 +13,9 @@ import java.util.Objects;
  * @author LA-San
  */
 public class Product {
-    private String productType; //user entered, compare to file for existing type
-    private BigDecimal costPerSqFoot; //read only from file
-    private BigDecimal laborCostPerSqFoot; //read only from file
+    private String productType; 
+    private BigDecimal costPerSqFoot; 
+    private BigDecimal laborCostPerSqFoot; 
 
     public Product(String productType) {
         this.productType = productType;

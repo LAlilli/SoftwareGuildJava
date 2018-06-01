@@ -5,6 +5,8 @@
  */
 package com.sg.flooringmastery.dao;
 
+import com.sg.flooringmastery.dto.Tax;
+import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +20,8 @@ import static org.junit.Assert.*;
  */
 public class TaxDaoTest {
     
+    private TaxDao dao = new TaxDaoFileImpl();
+    
     public TaxDaoTest() {
     }
     
@@ -30,18 +34,33 @@ public class TaxDaoTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+        dao.loadTaxData();
     }
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of loadTaxData method, of class TaxDao.
-     */
     @Test
-    public void testLoadTaxData() {
-
+    public void testValidateUserTaxData() throws Exception {
+        Tax onlyTaxData = new Tax();
+        onlyTaxData.setState("OH");
+        onlyTaxData.setStateTax(new BigDecimal(6.25));
+        
+        dao.validateUserTaxData(onlyTaxData.getState());
+        
+        assertEquals("OH", onlyTaxData.getState());
     }  
+    
+    @Test
+    public void testSetStateTax() throws Exception {
+        Tax onlyTaxData = new Tax();
+        onlyTaxData.setState("OH");
+        onlyTaxData.setStateTax(new BigDecimal(6.25));
+        
+        dao.setStateTax(onlyTaxData.getState());
+        
+        assertEquals(6.25, onlyTaxData.getStateTax().doubleValue(), 2);
+    } 
 }
