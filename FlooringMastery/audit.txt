@@ -277,3 +277,18 @@
 2018-05-31T20:02:42.818 : Joey
 2018-05-31T20:02:42.865 : Joey
 2018-05-31T20:03:21.908 : addOrder: Order Number: 9 |Customer Name: Mike |Date: 2010-10-10
+2018-06-07T20:38:38.787 : Joey
+2018-06-07T20:38:38.818 : Joey
+2018-06-07T20:39:45.536 : Joey
+2018-06-07T20:39:45.567 : Joey
+2018-06-07T20:40:52.996 : addOrder: Order Number: 10 |Customer Name: Heidi |Date: 2016-10-08
+2018-06-07T20:41:36.744 : editOrder: 2Order Number: 2 |Customer Name: Lorie |Date: 2002-02-02
+2018-06-07T21:01:01.117 : editOrder: 6Order Number: 6 |Customer Name: Timothy |Date: 2016-11-20
+2018-06-07T21:02:12.568 : Joey
+2018-06-07T21:02:12.599 : Joey
+2018-06-08T15:18:42.591 : Joey
+2018-06-08T15:18:42.622 : Joey
+2018-06-08T15:30:04.227 : Joey
+2018-06-08T15:30:04.287 : Joey
+2018-06-08T15:31:06.311 : addOrder: Order Number: 11 |Customer Name: Reta |Date: 2017-09-10
+2018-06-08T15:32:43.259 : removeOrder: 8

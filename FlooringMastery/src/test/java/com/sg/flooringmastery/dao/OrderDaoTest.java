@@ -86,7 +86,7 @@ public class OrderDaoTest {
         
         dao.addOrder(order2.getOrderNum(), order2);
         
-        assertEquals(6, dao.getAllOrders().size());
+        assertEquals(8, dao.getAllOrders().size());
     }
 
     /**
@@ -177,13 +177,13 @@ public class OrderDaoTest {
         
         dao.addOrder(order2.getOrderNum(), order2);
         
-        assertEquals(6, dao.getAllOrders().size());
+        assertEquals(8, dao.getAllOrders().size());
         
         dao.removeOrder(order1.getOrderNum());
-        assertEquals(6, dao.getAllOrders().size());
+        assertEquals(8, dao.getAllOrders().size());
         
         dao.removeOrder(order2.getOrderNum());
-        assertEquals(6, dao.getAllOrders().size());
+        assertEquals(8, dao.getAllOrders().size());
     }
 
     /**
